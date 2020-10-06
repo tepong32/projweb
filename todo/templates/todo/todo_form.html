@@ -1,0 +1,43 @@
+{% extends 'home/starter.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block main_content %}
+<div class="container-fluid">
+	<h2>Your To-Do's</h2>
+	<div class="row">
+		<div class="col-5">
+			ToDo Items here
+			<hr>
+			{% for todo in todos %}
+				<div class="text text-lg">  Category: {{ todo.category }}</div>
+				<div class="text text-sm"> Description: {{ todo.desc }}</div>
+				<div class="row">
+					<div class="text text-sm"> Status: {{ todo.status }}</div>
+					<div class="text text-sm"> Deadline: {{ todo.finish_by }}</div>
+				</div>
+				<hr>
+			{% endfor %}
+		</div>
+	
+
+		<div class="col-5">
+			<div class="container" style=" background-color: rgba(1,0,0,.2)">
+				<div class='content-section'>
+					<form method='POST'>
+						{% csrf_token %} <!-- this is a required line for added security -->
+						<fieldset class='form-group'>
+							<legend class='border-bottom mb-1'> Create ToDo </legend>
+							{{ form|crispy }}
+
+						</fieldset>
+
+						<div class='form-group'>
+							<button class='btn btn-outline-info' type='submit'> Create </button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock main_content %}

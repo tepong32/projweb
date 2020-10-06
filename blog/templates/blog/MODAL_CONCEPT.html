@@ -1,0 +1,17 @@
+<form method="POST">
+							{% csrf_token %}
+
+							This should be an instance of BlogPost but the submit (Post) button is not sending the post request to the database. Something wrong with the modal, I guess.<br>
+							An alternative I can think of is getting the inputs on this page be sent as post requests to the BlogPost model thru html. How, tho?
+
+
+
+							<div class="form-group">
+								<hr>
+								<input type="text" name="title" class="form-control" placeholder="Title:">
+							</div>
+							<div class="form-group">
+								<input type="text" name="content" class="form-control" placeholder="Content:">
+							</div>
+
+							</form>

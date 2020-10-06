@@ -1,0 +1,143 @@
+{% extends 'users/users_base.html' %}
+
+
+{% block profile_info_area %}	<!-- take note that this is main_content extension , not login_area -->
+<div class="row">
+	<div class="container col-md-10 mt-2">
+	
+	<div class="content-section">
+	  <div class="media">
+	    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+	    <div class="media-body">
+	    	<div class="row">
+	      		<h4 class="account-heading ml-3"><strong> {{ user.username }} </strong></h4>
+
+	      		<!-- USER BADGES DEPENDING ON USER_GROUP -->
+	      		{% if user.profile.user_group == "Pawn" %}
+	      			<i class="fa fa-chess-pawn ml-3"></i>
+	      		{% elif user.profile.user_group == "Rook" %}
+	      			<i class="fa fa-chess-rook ml-3"></i>
+	      		{% elif user.profile.user_group == "Knight" %}
+	      			<i class="fa fa-chess-knight ml-3"></i>
+	      		{% elif user.profile.user_group == "Bishop" %}
+	      			<i class="fa fa-chess-bishop ml-3"></i>
+	      		{% elif user.profile.user_group == "Queen" %}
+	      			<i class="fa fa-chess-queen ml-3"></i>
+	      		{% elif user.profile.user_group == "King" %}
+	      			<i class="fa fa-chess-king ml-3"></i>
+	      		{% endif %}
+
+	      	<div class="ml-2 text text-sm" style="font-family: 'Monotype Corsiva'; color: rgba(1,0,0,.3)" > {{ user.profile.title }}</div>
+	      		<!-- request.user.username means the current logged-in user -->
+	      		{% if user.username == request.user.username %}
+					<div class="col">
+						<a class="text-sm" href="{% url 'profile-edit' user.username %}">Edit your profile</a>
+					</div>
+	      		{% endif %}
+	      		
+	      	</div>
+	      	<div class="text-secondary text-sm ml-2"><i> {{ user.email }} </i></div>
+
+		<div class="content-section">
+			<div class="media">
+				<p class="media-body text-info ml-3"> <strong>{{ user.profile.quote }}</strong> </p>
+			</div>
+		</div>
+		<div class="content-section">
+			<div class="media">
+				<p class="media-body ml-2"> <strong>{{ user.profile.year_in_school }} --- <text class="text-primary">{{ user.profile.school }}<text></strong> </p>
+			</div>
+		</div>
+
+
+
+	      
+	    </div>
+		<div class="container col-md-3">
+		  qr code<br>
+		  wallet address
+		<div>
+			<a class='btn btn-outline-success btn-sm mr-1 mt-3' href="#"> Send a message </a>	
+		</div>
+		</div>
+	  </div>
+	</div>
+</div>
+
+
+
+<div class="container-fluid border border-success ml-2 mr-2" style="height: 500px; background-color: rgba(1,0,0,.2)">
+	<!-- -->
+	<div class="row mt-2">
+	  <div class="col-8 col-sm-10">
+	    <div class="tab-content" id="vert-tabs-right-tabContent">
+
+	    <!-- ABOUT ME PART -->
+	      <div class="tab-pane fade show active" id="vert-tabs-right-about" role="tabpanel" aria-labelledby="vert-tabs-right-about-tab">
+      		{% if user.username == request.user.username %}
+      			<div class="text text-sm" style="font-family: 'Monotype Corsiva'">
+      				<b>Only you</b> (the account owner) can see these direct Social Media links for your convenience on checking them out.<br>
+      				These information <b>may or may not</b> be released for visibility for other site users in the future, depending on user-feedbacks.<br>
+      				<b>ATM, it's just for your review.</b> Go ahead and check other profiles to confirm.
+      			</div>
+
+      			<div class="row">
+	      			<!-- these might be changed to icons with actions to respective websites -->
+	      			<div class="text ml-3">
+	      				<i><a class="text-sm text-primary" href="#" alt="" >FB: {{user.profile.FB}}</a></i></div>
+	      			<div class="text ml-3">
+	      				<i><a class="text-sm text-primary" href="#" alt="" >IG: {{user.profile.IG}}</a></i></div>
+	      			<div class="text ml-3">
+	      				<i><a class="text-sm text-primary" href="#" alt="" >Twitter: {{user.profile.TW}}</a></i></div>
+      			</div>
+      		<hr>
+      		{% endif %}
+      		<div class="row">
+      			<div class="overflow-auto col-6 ml-2">
+      				{{ user.profile.about_me|linebreaks }}
+      			</div>
+
+      		</div>
+      		
+
+
+
+	      </div>
+	      <!-- SHARED ITEMS PART -->
+	      <div class="tab-pane fade" id="vert-tabs-right-shared" role="tabpanel" aria-labelledby="vert-tabs-right-shared-tab">
+	      	    <div class="overflow-auto col-5 ml-2">
+	  				<h5><i>To-Dos:</i></h5>
+	  				<hr>
+	  				{% for todo in todos %}
+	      				{{todo.category}}<br>
+	      				{{todo.desc|linebreaks}}<br>
+	      				{{todo.finish_by}}
+	  					<hr>
+	  				{% endfor %}
+      			</div>
+	      </div>
+
+	      <!-- # PART -->
+	      <div class="tab-pane fade" id="vert-tabs-right-messages" role="tabpanel" aria-labelledby="vert-tabs-right-messages-tab">
+	         Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc euismod pellentesque diam. 
+	      </div>
+
+	      <!-- CREATE POST PART -->
+	      <div class="tab-pane fade" id="vert-tabs-right-settings" role="tabpanel" aria-labelledby="vert-tabs-right-settings-tab">
+	      	TBD
+	         
+	      </div>
+
+	    </div> <!-- border/division for primary divs -->
+	  </div>
+	  <div class="col-4 col-sm-2">
+	    <div class="nav flex-column nav-tabs nav-tabs-right h-100" id="vert-tabs-right-tab" role="tablist" aria-orientation="vertical">
+	      <a class="nav-link active" id="vert-tabs-right-about-tab" data-toggle="pill" href="#vert-tabs-right-about" role="tab" aria-controls="vert-tabs-right-about" aria-selected="true">About me</a>
+	      <a class="nav-link" id="vert-tabs-right-shared-tab" data-toggle="pill" href="#vert-tabs-right-shared" role="tab" aria-controls="vert-tabs-right-shared" aria-selected="false">User-Shared Items</a>
+	      <a class="nav-link" id="vert-tabs-right-messages-tab" data-toggle="pill" href="#vert-tabs-right-messages" role="tab" aria-controls="vert-tabs-right-messages" aria-selected="false">#</a>
+	      <a class="nav-link" id="vert-tabs-right-settings-tab" data-toggle="pill" href="#vert-tabs-right-settings" role="tab" aria-controls="vert-tabs-right-settings" aria-selected="false">#</a>
+	    </div>
+	  </div>
+	</div>
+</div>
+{% endblock profile_info_area %}
