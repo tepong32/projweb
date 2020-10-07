@@ -1,13 +1,11 @@
-{% extends 'home/starter.html' %}
+{% extends 'home/landing.html' %}
 
-<!-- from the main template: home/starter.html -->
+<!-- The base html file for the users app. All other htmls inside the app will extend from this file. -->
+
+<!-- from the template: home/landing.html -->
 {% block main_content %} 
 
-<!-- the actual content for the blog app -->
-{% block profile_info_area %} {% endblock profile_info_area %}
-
-
-
-
+	<!-- the actual content for the users app -->
+	{% block profile_info_area %} {% endblock profile_info_area %}
 
 {% endblock main_content %}

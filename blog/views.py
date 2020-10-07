@@ -87,7 +87,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 	form_class = BlogPostForm
 	template_name = 'blog/blog_postform.html'
 	# fields = ['title', 'content']		# fields for the model // not needed for there is a form_class
-	# success_url = '/blog/'
+	success_url = '/home'
 
 	def form_valid(self, form):			#to automatically get the id of the current logged-in user as the author
 		form.instance.author = self.request.user 	#set the author to the current logged-in user
@@ -98,7 +98,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = BlogPost 
 	form_class = BlogPostForm
 	template_name = 'blog/blog_postform.html' # note that this template is the same as for the createview
-	# success_url = '/blog/'
+	success_url = '/home/'
 
 	def form_valid(self, form):			
 		form.instance.author = self.request.user 	#to automatically get the id of the current logged-in user as the author
@@ -115,7 +115,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):		
 	model = BlogPost
 	template_name = 'blog/blog_postconfirmdelete.html'
-	success_url = '/blog/'
+	success_url = '/home/'
 
 	def form_valid(self, form):
 		form.instance.author = self.request.user
@@ -139,7 +139,7 @@ class PostCreatePopup(LoginRequiredMixin, BSModalCreateView):
 	form_class = ModalPostForm
 	template_name = 'blog/blog_postform_modal.html'
 	success_message = 'Posted'
-	success_url = "/blog/"	#reverse_lazy('blog-home')
+	success_url = "/home/"	#reverse_lazy('blog-home')
 
 
 

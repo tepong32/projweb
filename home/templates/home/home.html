@@ -1,6 +1,9 @@
-{% extends 'home/starter.html' %}
+{% extends 'home/landing.html' %}
 {% load crispy_forms_tags %}
 
+<!-- User Home page -->
+<!-- This is the page related to the <home> icon button on the navigation bar or '<domain_name>/home' url.
+Just viewable by logged-in users.  -->
 
 {% block main_content %}
 <div class="container">
@@ -12,6 +15,7 @@
                 <div class="card card-widget widget-user">
 
               <!-- bg color for profiles depending on user_group -->
+              <!-- other user_group color options are tbd -->
               {% if user.profile.user_group == "King" %}
               	<div class="widget-user-header bg-red">
               {% elif user.profile.user_group == "Pawn" %}
@@ -162,18 +166,17 @@
 
     <div class="content-section">
 	  <div class="media">
-	    <div class="media-body">
+	    <div class="media-body text-justify" style="padding: 1rem">
 	    	{% for todo in todos %}
 				<div clas="row">
-					<u>
-						<i  class="text text-md" href="#"><b>{{ todo.category }}</b></i>
-					</u>
+					<i class="text text-sm text-muted" href="#"><b>{{ todo.category }}</b></i>
+					</i>
 			    	<a class='fa fa-pencil-alt text-sm ml-5 mr-1' href="{% url 'todo-update' todo.id %}"></a>
 			    	<a class='fa fa-trash text-sm ml-2 mr-1' href="{% url 'todo-delete' todo.id %}"></a>
-			    	<small class="text pull-right text-sm ml-4"> Finish by: <text class="text-danger">{{ todo.finish_by }}</text></small>
+			    	<i class="text-sm"><small class="text pull-right ml-5"> Finish by: <text class="text-danger">{{ todo.finish_by }}</text></small></i>
 			    	
 				</div>
-				<div class="text text-lg ml-3"> {{ todo.desc|linebreaks }}</div>
+				<div class="text text-sm ml-3"> {{ todo.desc|linebreaks }}</div>
 				<div class="row ml-3">
 					<div class="text text-sm"> Status (might not be needed anymore): {{ todo.status }} </div>
 				</div>
@@ -195,9 +198,9 @@
 
 
 <!-- 2nd row right -->
-<div class="card card-primary">
+<div class="card card-dark">
 	<div class="card-header">
-		<h3 class="card-title">Admins</h3>
+		<h3 class="card-title">Members</h3>
 		<i class="text text-sm ml-2"><small>(Need help? Got suggestions?)</small></i>
 	</div>
 <div class="card-body">
@@ -207,7 +210,9 @@
 		    <img class="rounded-circle account-img elevation-5" src="{{ u.profile.image.url }}" style="height: 30px; width: 30px">
 		    <div class="media-body">
 		    	<div class="row">
-		      		<h6 class="account-heading ml-3 mt-2">{{ u.username }}</h6>
+		      		<h6 class="account-heading ml-3 mt-2">
+		      			<a href="{% url 'profile' u.username %}">{{ u.username }}</a>
+		      		</h6>
 		      		<a class='btn btn-dark btn-sm ml-auto mt-1' href="#"> message </a>
 			    </div>
 			</div>

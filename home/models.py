@@ -4,7 +4,9 @@ from django.contrib.auth.models import User
 from django import forms	# for pagedown
 
 
-# each class is going to be "it's own table in the database."
+# each class is going to be "it's own table in the database"
+# therefore, if you're a newbie (like me) who's not knowledgeable about databases, DO NOT...
+# DO NOT just delete class attributes. Additions will do as you will just have to 'makemigrations' and 'migrate' before they take effect but deletions will ruin your database and you'll have to start from scratch to see your models' instances (scratche means 'manage.py createsuperuser'...if you know what I mean).
 
 class Announcement(models.Model):
 	title = models.CharField(max_length=100)
@@ -13,7 +15,7 @@ class Announcement(models.Model):
 	date_modified = models.DateTimeField(auto_now=True) # shows the actual time the post was modified // everytime it is modified
 	author = models.ForeignKey(User, on_delete=models.CASCADE) # ForeignKey is for relationship with another model
 
-	def __str__(self):			# for printing the title of the post whenever it gets called in the query (using python shell)
+	def __str__(self):
 		return self.title
 
 	def get_absolute_url(self):
@@ -25,3 +27,4 @@ class Announcement(models.Model):
 		return mark_safe(markdown_text)
 
 
+# maybe Ads?

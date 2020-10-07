@@ -3,6 +3,7 @@ django-adminlte3==0.1.6
 django-bootstrap-modal-forms==1.5.0
 django-crispy==1.8.1
 django-markdownx
+django-marldown-deux
 django-pagedown==2.0.3
 django-rest-framework==0.1.0
 djangorestframework==3.11.1

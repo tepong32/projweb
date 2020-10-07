@@ -33,4 +33,4 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Profile 	# the model that is going to be affected is the Profile model,
-		fields = ["image", "gender", "FB", "IG", "TW", "school", "year_in_school", "quote", "about_me", "reach_me_intro"] # "user_group" field was not included
+		fields = ["image", "gender", "school", "year_in_school", "quote", "about_me", "reach_me_intro", "screen_name"] # "user_group" field was not included

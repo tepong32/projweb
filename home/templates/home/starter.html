@@ -1,6 +1,10 @@
 {% load adminlte_helpers i18n %}
 {% load static %}
 
+<!-- INDEX PAGE -->
+<!-- This page was overly-modified from that of the default AdminLTE3 starter.html.
+Kindly just check comments for better understanding of its parts. This was not made by someone good with HTML, CSS or JavaScript. Logics and href links were the ones most changed.  -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,10 +66,10 @@
 
             
             <!-- a shortcut link for admin accounts -->
-            {% if request.user.user_group == King %}
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="/admin" class="nav-link">Admin</a>
-            </li>
+            {% if request.user.user_group == "King" %}
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/admin" class="nav-link">Admin</a>
+                </li>
             {% endif %}
         </ul>
     
@@ -206,12 +210,12 @@
     </nav>
 <!-- /NOT LOGGED-IN HEADER -->
 
+
+
 <!-- NOT LOGGED-IN SIDEBAR -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-        <!-- Sidebar user panel -->
-        
-        <!-- Sidebar user panel (optional) -->
+      <!-- Sidebar user panel -->
       <div class="sidebar">
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
        <!-- Brand Logo -->
@@ -258,80 +262,24 @@
                     </ul>
                 </li>
             </ul>
-            </nav>   
+        </nav>   
     </div>
 </aside>
-    <!-- /NOT LOGGED-IN SIDEBAR -->
+
 {% endif %}
+<!-- /NOT LOGGED-IN SIDEBAR -->
 
 
-    <!-- MAIN CONTENT AREA -->
-    <div class="content-wrapper">
-        <!-- FLASH MESSAGE AREA -->
-        <!-- this is here so the flash messages (if there's any) will be shown on any page of the site -->
-        {% if messages %}
-          {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
-              {{ message }}
-            </div>
-          {% endfor %}
-        {% endif %}
-        <!-- /FLASH MESSAGE AREA -->
 
-        {% if user.is_authenticated %}
-          {% block main_content %}
-          {% endblock main_content %}
-        {% else %}
 
-          <div class="media-content media-content-sm mt-2">
-            <!-- area for logging-in, signing-up & password matters -->
-            {% block login_area %}
-            <div class="row">
-                  <div class="col-7">
-                    <div>
-                      <p class="text text-center" style="background-color: rgba(0,100,60,.3)">
-                        Whenever you are ready to take advantage of <i><strong>all</strong></i> the exciting things the site offers, kindly <a href="{% url 'login' %}"> Log in here. </a>
-                      </p>
-                    </div>
-                  </div>
-                <div class="col border border-success text-justify text-sm ml-auto mr-2" style="background-color: rgba(0,150,150,.3); width: 450px">
-                  <!-- ABOUT THE DEV -->
-                  <div class="ml-2 mr-2">
-                      <div class="row">
-                          <h4 class="mt-4 ml-2">A message from the dev:</h4>
-                        <div class="ml-auto mr-2 mt-2">
-                            <img src="/media/DP.jpg" alt="me&mydog" class="img-circle elevation-3" style="height: 80px; width: 80px; opacity: .8">
-                        </div>
-                      </div>
-                      
-                      <b>Hi there! I am Teppy and this dog with me is Tico!</b><br>
-                      <hr>
-                      In the light of the COVID-19 global pandemic outbreak in 2020 <i>(specifically in March here in the Philippines)</i>, I decided to try to create a website. <i>(Yeah... I just tried!)</i> This was because I already had my eye on learning programming using Python a year or two prior and I already am quite knowledgeable of its basics <i>(I was trying to create my own Android app a few months before the pandemic broke out, too. Seems like I failed at it, tho.)</i><br>
-                      Hey! Did I mention I just searched for "learning programming" on YouTube <i>(2017, I think...)</i> while working as a <i>"call-center agent"?</i> Also, I am a Business Ad graduate <i>(bragging rights?).</i> <br>
+<!-- MAIN CONTENT AREA -->
+<!-- logic is inside landing.html -->
+{% block landing_page %}
 
-                      Cutting-off all the umimportant parts of the story: I just decided that since there will be quite a boring time spending days at home doing barely "just anything", I'll try to be as productive as I can be. I also came across this quote saying:<br><br>
+{% endblock landing_page %}
+<!-- /MAIN CONTENT block -->
 
-                      <b>"If you don't get a skill or improve one during this home quarantine period, you never lacked time; YOU LACKED DISCIPLINE."</b><br><br>
 
-                      ...and the rest is what can be seen on this website. ;)<br>
-                      <hr>
-                      Many, many thanks to all my online mentors <i>(who don't know me, of course!)</i> for the knowledge they shared which enabled me to create this <b>fascinating</b> <i>(what? just kidding!)</i> website!
-                      <ul>
-                        <li><a href="#">Sentdex</a>, <a href="#">CleverProgrammer</a>, <a href="#">CoreyMS</a>, <a href="#">CodingforEntrepreneurs</a>, <a href="#">DennisIvy</a> and <a href="#">TechWithTim</a> - for Python's basics, different Django apps tutorials and many other different Python coding techniques,</li>
-                        <li>...and to all others <i>(2m2m)</i> whom I owe the ideas collaborated into this website. <i>(Special mention: <b>StackOverflow)</b></i></li>
-                        <b>I OWE YOU ALL BIGTIME! <div class="fa fa-heart"></div></b>
-                      </ul>
-                      With this, I hope to inspire those who want to learn programming, as well.
-                      <br>
-                      <br> 
-                    </div>
-                </div>
-            </div>
-            {% endblock login_area %}
-          </div> 
-        {% endif %} <!-- /user.is_authenticated -->
-
-    </div>
 
 <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
@@ -355,9 +303,7 @@
 
 
 {% block javascript %}
-
     {% include 'adminlte/lib/_scripts.html' %}
-
 {% endblock %}
 
 {% block extra_js %}{% endblock %}
@@ -394,9 +340,7 @@
 
         // datepicker testing
         $('#datetimepicker').data("DateTimePicker").FUNCTION()
-
     });
-
 </script>
 
 

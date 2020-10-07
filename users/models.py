@@ -4,11 +4,7 @@ from PIL import Image
 from django.urls import reverse
 
 
-
-
-
-
-# remember to register to the admin.py file EVERYTIME!
+# remember to register each model to the admin.py file EVERYTIME!
 
 
 class Profile(models.Model):
@@ -112,12 +108,6 @@ class Profile(models.Model):
 			self.title = "Site dev. Howrayt! ;)"
 			return self.title
 
-	
-	# other socmed account links
-	FB = models.CharField(max_length=80, null=True)
-	IG = models.CharField(max_length=80, null=True)
-	TW = models.CharField(max_length=80, null=True)
-
 	# education / school info
 	school = models.CharField(max_length=100, default="Secret!")
 	FRESHMAN = 'Freshman'
@@ -137,10 +127,12 @@ class Profile(models.Model):
 		choices=YEAR_IN_SCHOOL_CHOICES,
 		default=FRESHMAN,
 	)
+
+	# etc
 	quote = models.CharField(max_length=300)
-	about_me = models.TextField(blank=True)
-	date_registered = models.DateTimeField(auto_now_add=True)
-	reach_me_intro = models.TextField(default="You can reach me thru: ")
+	about_me = models.TextField(blank=True, default="Well...who cares!? :( JK This is default. Change this! :)")
+	reach_me_intro = models.TextField(default="You can reach me thru: (email or socmed accounts)")
+	screen_name = models.CharField(max_length=50, blank=True,) # helper_text="Get an alias for anonimity ;)"
 
 	def __str__(self):
 		return f"{self.user.username}'s Profile"
@@ -152,8 +144,8 @@ class Profile(models.Model):
 		super(Profile, self).save(*args, **kwargs)
 
 		img = Image.open(self.image.path)	# open the image of the current instance
-		if img.height > 50 or img.width > 50:	# for sizing-down the images to conserve memory in the server
-			output_size = (100, 100)
+		if img.height > 600 or img.width > 600:	# for sizing-down the images to conserve memory in the server
+			output_size = (600, 600)
 			img.thumbnail(output_size)
 			img.save(self.image.path)
 

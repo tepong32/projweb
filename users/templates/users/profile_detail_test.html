@@ -1,7 +1,9 @@
 {% extends 'users/users_base.html' %}
 
+<!-- Users' Profile page -->
+<!-- Self-explanatory page...I guess. LOL -->
 
-{% block profile_info_area %}	<!-- take note that this is main_content extension , not login_area -->
+{% block profile_info_area %}
 
 <div class="col">
   <div class="card-body">
@@ -37,34 +39,25 @@
 	    <div class="media-body">
 	    	<div class="row">
 	      		<h4 class="account-heading ml-3"><strong> {{ user.username }} </strong></h4>
-
 	      		<!-- request.user.username means the current logged-in user -->
 	      		{% if user.username == request.user.username %}
-					<div class="col">
-						<a class="text-sm" href="{% url 'profile-edit' user.username %}">Edit your profile</a>
-					</div>
+    					<div>
+    						<a class="fa fa-pen ml-4" style="color: yellow;" href="{% url 'profile-edit' user.username %}"></a>
+    					</div>
 	      		{% endif %}
-	      		
 	      	</div>
-	      	<small>
-	      		<i class="text-success text-sm"> member since {{ user.profile.date_registered|date:"F  Y" }} </i>
-	      	</small>
 
 		<div class="content-section">
 			<div class="media">
-				<p class="media-body text-dark ml-3"> <strong>{{ user.profile.quote }}</strong> </p>
+				<p class="media-body text-light ml-3"> <strong><i>{{ user.profile.quote }}</i></strong> </p>
 			</div>
 		</div>
-
-
-
-
-	      
-	    </div>
+	  </div>
 		<div class="container col-md-3">
 		  qr code<br>
 		  wallet address
 		<div>
+          
 			<a class='btn btn-outline-dark btn-sm mr-1 mt-3' href="#"> Send a message </a>	
 		</div>
 		</div>
@@ -93,23 +86,13 @@
                       <div class="tab-pane fade" id="vert-tabs-right-contactme" role="tabpanel" aria-labelledby="vert-tabs-right-contactme-tab">
                       	<!-- user.profile.reach_me_intro -->
                         You can reach me thru the ff links: <br>
-                        <i class="fa fa-envelope"></i>   email:
-                        	<i><a class="text-sm text-primary" href="#" alt="" >{{ user.email }}</a></i>
-                        	<br>
-                        <i class="fa fa-user"></i>    fb
-                        	<i><a class="text-sm text-primary" href="#" alt="" >{{user.profile.FB}}</a></i>
-                        	<br>
-                        <i class="fa fa-users"></i>   tw:
-                        	<i><a class="text-sm text-primary" href="#" alt="" >{{user.profile.TW}}</a></i>
-                        	<br>
-                        <i class="fa fa-users"></i>   ig:
-                        	<i><a class="text-sm text-primary" href="#" alt="" >{{user.profile.IG}}</a></i>
-                        	<br>
+
 
                       </div>
 
                       <div class="tab-pane fade show active" id="vert-tabs-right-intro" role="tabpanel" aria-labelledby="vert-tabs-right-intro-tab">
-                      	aaaa
+                      	<i class="text-muted">Member since {{ user.date_joined|date:"F  Y" }}</i> <br>
+                        {{user.profile.about_me}}
 
                             </div>
 
