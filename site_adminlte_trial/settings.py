@@ -27,7 +27,7 @@ SECRET_KEY = '!4w%dze725mc^)w$b+*417fk+masts6659=lco-2jc*jm4va^$!5(ju'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['thehideout.pythonanywhere.com']
 
 
 # Application definition
