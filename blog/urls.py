@@ -14,7 +14,7 @@ from .views import (
     PostDeleteView,
 
     PostCreatePopup,
-    #quick_post_view
+    quick_post_view,
     BlogIndexView,
 
     )
@@ -35,8 +35,8 @@ urlpatterns = [
 
     # experiment page to see the changes being made
     # change parameters as necessary, depending on what part of the site you are modifying
-    path('post/quick/', PostCreatePopup.as_view(), name='quickpost'),
-    #path('post/', views.quick_post_view, name='quickpost'),
+    path('post/quick', views.quick_post_view, name='quickpost'),
+    #path('post/popup/', PostCreatePopup.as_view(), name='post-popup')
 
     #path('exp/', PDCreateView.as_view(), name='exp'),
     ]

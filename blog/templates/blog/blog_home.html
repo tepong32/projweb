@@ -37,15 +37,15 @@
 	{% for post in posts %}
 	<div class="border border-success mt-1 mb-1">
 		<article class="media content-section ml-2 mt-2 mb-3">
-		  <img class='rounded-circle article-img' src='{{ post.author.profile.image.url }}'>
+		  <img class='rounded-circle article-img' src='{{ post.author.profile.image.url }}' style="height: 50px; width: 50px">
 
 		  <div class="media-body">
 		    <div class="article-metadata">
-		    <div class="row">
+		    <div class="row" style="font-size: 12px">
 		      <a class="ml-3 mr-5" href="{% url 'profile' post.author %}" style="font-family: 'Arial'; color: black">{{ post.author }}</a>
 		      	<!-- profile badges (chess pieces) -->
 				{% if post.author.profile.user_group == "Pawn" %}
-						<i class="fa fa-chess-pawn"></i>
+						<i class="fa fa-chess-pawn" style="color: blue"></i>
 					{% elif post.author.profile.user_group == "Rook" %}
 						<i class="fa fa-chess-rook"></i>
 					{% elif post.author.profile.user_group == "Knight" %}
@@ -55,7 +55,7 @@
 					{% elif post.author.profile.user_group == "Queen" %}
 						<i class="fa fa-chess-queen"></i>
 					{% elif post.author.profile.user_group == "King" %}
-						<i class="fa fa-chess-king"></i>
+						<i class="fa fa-chess-king" style="color: orange"></i>
 					{% endif %}
 				<small class="text-muted ml-2"> on {{ post.date_posted|date:"F d, Y" }}</small>
 
@@ -66,7 +66,7 @@
 			    	<a class='fa fa-pencil-alt text-sm ml-2 mr-2' href="{% url 'post-update' post.id %}">  </a>
 			    	<a class='fa fa-trash text-sm ml-2 mr-2' href="{% url 'post-delete' post.id %}">  </a>
 			    	<a class='btn btn-outline-info btn-sm ml-2 mr-2' href="{% url 'user-posts' post.author %}"> All your posts </a>
-			    	<a class="fa fa-theater-masks" href="#">up/laugh/down/boo? - ajax needed, tho</a>
+			    	<a class="fa fa-theater-masks" href="#">likes?</a>
 			    </div>
 		      {% else %}
 		    	<div class="ml-5">
@@ -78,8 +78,8 @@
 
 			<!-- post.id argument was needed here for individual posts to be displayed -->
 			<div class="row">
-		    <h3><a class="article-title col-4 ml-3" href=" {% url 'post-detail' post.id %}">
-		    	{{ post.title|truncatechars:50 }}</a></h3>
+		    <h6><a class="article-title col-4 ml-3" href=" {% url 'post-detail' post.id %}">
+		    	{{ post.title|truncatechars:100 }}</a></h6>
 		    	<div class=" col-2 ml-5">
 		    		<small><i>Tag: {{post.tag}}</i></small>
 		    	</div>

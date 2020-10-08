@@ -23,6 +23,7 @@ def landing(request):
 		return render(request, 'home/landing.html', context)
 
 def home(request):
+	user = User
 	user_list = User.objects.all()
 	paginator = Paginator(user_list, 10)
 	context = {
@@ -35,6 +36,21 @@ def home(request):
 	return render(request, 'home/home.html', context)
 
 
+# from django.views.generic import ListView
+
+# class LandingPageListView(ListView):
+# 	user = User
+# 	model = Announcement
+# 	template_name = 'home/landing.html'
+
+
+# 	queryset = Announcement.objects.all()		# getting the 'posts' key from "context = {'posts': Post.objects.all(),}"
+# 	ordering = ['-date_posted']
+# 	paginate_by = 2	
+
+# 	# def get_queryset(self):		# this defines the filter for the specific user's posts
+# 	# 	user = get_object_or_404(User, username=self.kwargs.get('username'))
+# 	# 	return BlogPost.objects.filter(author=user).order_by('-date_posted')
 
 
 		

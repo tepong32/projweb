@@ -144,16 +144,16 @@ class PostCreatePopup(LoginRequiredMixin, BSModalCreateView):
 
 
 # this will work if this will be put on its own page/html file
-# def quick_post_view(request):
-# 	form = ModalPostForm(request.POST or None)
-# 	if form.is_valid():
-# 		form.save()
-# 		form = ModalPostForm()
+def quick_post_view(request):
+	form = ModalPostForm(request.POST or None)
+	if form.is_valid():
+		form.save()
+		form = ModalPostForm()
 
-# 	context = {
-# 		'form': form
-# 	}
-# 	return render(request, 'blog/blog_postform_modal.html', context)
+	context = {
+		'form': form
+		}
+	return render(request, 'blog/quickpost.html', context)
 
 
 

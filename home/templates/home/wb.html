@@ -10,24 +10,40 @@ Most likely, this page will just be seen by users who opens a new tab/window on 
 <h4 class="text text-center">Welcome back, {{request.user.username}}!</h4>
 <hr>
 <div class="row">
-	<div class="col">
-		Announcements:
-		{% for a in announcements %}
-		    <h6>{{a.title}}</h6>
-		    <small>{{a.content}}</small><br>
-		    by {{a.author}}
-		{% endfor %}
-	</div>
-
-	<div class="col">
-		Check out our newest users!
+	<h4 class="col-8">Announcements:</h4>
+	<div>
+		<h6>Check out our newest users!</h6>
 		<small>
 			<i class="text text-sm" style="font-weight: 10; color: red">(We now have: {{ users.objects.count }} users! (how to show count? LOL)</i><br>
 		</small>
+	</div>
+</div>
+<div class="row">
+	<div class="overflow-auto col-8" style="max-height: 250px; padding: 1rem">
+		
+		{% for a in announcements %}
+			<div class="row">
+			    <strong>{{a.title}}</strong>
+			    <p class="text text-sm ml-4">by {{a.author}}</p>
+			</div>
+		    <small>{{a.content|linebreaks}}</small><br>
+		    
+		    <hr>
+		{% endfor %}
+	</div>
+
+	<div class="overflow-auto col" style="max-height: 250px; padding: 1rem">
+		
 		{% for u in users %}
-			<a href="{% url 'profile' u.username %}">{{u.username}}</a>
-			<small class="text text-muted">registered: {{ user.date_joined|date:"F d, Y" }}</i></small>
-			<br>
+		<div class="row">
+			<div class="col-4">
+				<a href="{% url 'profile' u.username %}">{{u.username}}</a>
+			</div>
+			<div class="col">
+				<small class="text text-muted" style="font-family: 'Arial-Black'; font-size: 10px">registered: {{ user.date_joined|date:"F d, Y" }}</i></small>
+				<br>
+			</div>
+		</div>
 		{% endfor %}
 	</div>
 

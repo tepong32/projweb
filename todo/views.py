@@ -96,7 +96,7 @@ class ToDoCreateView(LoginRequiredMixin, CreateView):
 	context_object_name = 'todos'
 	form_class = ToDoForm
 	template_name = 'todo/todo_form.html'
-	success_url = '/'
+	success_url = '/home'
 
 	def form_valid(self, form):			#to automatically get the id of the current logged-in user as the author
 		form.instance.author = self.request.user 	#set the author to the current logged-in user
@@ -107,7 +107,7 @@ class ToDoUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = ToDoList 
 	form_class = ToDoForm
 	template_name = 'todo/todo_form.html'
-	success_url = '/'
+	success_url = '/home'
 
 	# def form_valid(self, form):			
 	# 	form.instance.author = self.request.user 
@@ -126,7 +126,7 @@ class ToDoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	context = {'todos': ToDoList.objects.all()}
 	context_object_name = 'todos'
 	template_name = 'todo/todo_confirmdelete.html'
-	success_url = '/'
+	success_url = '/home'
 
 	def form_valid(self, form):
 		form.instance.author = self.request.user

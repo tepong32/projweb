@@ -17,11 +17,9 @@ class BlogPostForm(forms.ModelForm):
 from bootstrap_modal_forms.forms import BSModalForm
 
 class ModalPostForm(BSModalForm):
-	title = forms.CharField(max_length=100)		# i think this can be removed since the same field is in the model
-	content = forms.CharField(widget=forms.Textarea())
 	class Meta:
 		model = BlogPost
-		fields = ['title', 'content']
+		fields = ['title', 'content', 'tag']
 
 
 

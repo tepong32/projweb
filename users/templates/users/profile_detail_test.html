@@ -9,7 +9,7 @@
   <div class="card-body">
     <div class="card card-widget widget-user">
   <!-- Add the bg color to the header using any of the bg-* classes -->
-  	{% if user.profile.user_group == "King" %}
+  {% if user.profile.user_group == "King" %}
 		<div class="widget-user-header bg-red">
 	{% elif user.profile.user_group == "Pawn" %}
 		<div class="widget-user-header bg-primary">

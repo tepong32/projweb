@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from . import views
+# from .views import LandingPageListView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url
@@ -10,7 +11,12 @@ urlpatterns = [
 	# func-based view
     path('', views.landing, name='landing' ),
     path('home/', views.home, name='home' ),
+
+    # testing func-based views
     path('test/', views.testing, name='testing' ),
+
+    # testing class-based views
+    # path('asdf/', LandingPageListView.as_view(), name='landingpagelistview')
 ]
 
 

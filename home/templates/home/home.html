@@ -6,7 +6,7 @@
 Just viewable by logged-in users.  -->
 
 {% block main_content %}
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
 		<div class="col">
 			<!-- post panel area -->
@@ -162,12 +162,11 @@ Just viewable by logged-in users.  -->
   </div>
 <div class="card-body">
     <div class="card card-widget widget-user">
-    <small class="text text-sm" style="font-family: 'Monotype Corsiva'; size: 8px; color: rgba(1,0,1,.5)" ></small>
-
-    <div class="content-section">
+    <div class="content-section border border-warning">
 	  <div class="media">
-	    <div class="media-body text-justify" style="padding: 1rem">
+	    <div class="media-body text-justify overflow-auto" style="padding: .5rem; max-height: 250px">
 	    	{% for todo in todos %}
+	    		<hr>
 				<div clas="row">
 					<i class="text text-sm text-muted" href="#"><b>{{ todo.category }}</b></i>
 					</i>
@@ -185,9 +184,9 @@ Just viewable by logged-in users.  -->
 	  </div>
 
 </div>
-  <div class="card-footer" style="font-size: 12px">
+  <div class="card-footer" style="font-size: 12px; background-color: rgba(0,0,1,.15);">
     <div class="row">
-    	maybe pagination here if user has too many To-dos or some reminders for ToDoList
+    	Got something to do later? Create a reminder and see it here everytime you check back in!
       </div>   
             </div>
           </div>
