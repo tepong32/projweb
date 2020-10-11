@@ -6,67 +6,100 @@ The 'home' button on the navbar serves as the 'feed' (newsfeed) page for logged-
 
 <!-- Format of all apps' _base html extensions will have ---extends 'home/landing.html'---. -->
 
-
 {% block landing_page %}
 
 <div class="content-wrapper">
-    <!-- FLASH MESSAGE block -->
-    <!-- this is here so the flash messages (if there's any) will be shown on any page of the site -->
-    {% if messages %}
-      {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-          {{ message }}
+  <!-- FLASH MESSAGE block -->
+  <!-- this is here so the flash messages (if there's any) will be shown on any page of the site -->
+  {% if messages %} {% for message in messages %}
+  <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+  {% endfor %} {% endif %}
+  <!-- /FLASH MESSAGE block -->
+
+  {% if user.is_authenticated %}
+
+  <!-- the actual dynamic area for the website -->
+  {% block main_content %} {% endblock main_content %} {% else %} {% block
+  login_area %}
+  <div class="row">
+    <div
+      class="border border-success text-justify text-sm ml-3"
+      style="background-color: rgba(0, 150, 150, 0.3); width: 450px"
+    >
+      <!-- ABOUT THE DEV -->
+      <div class="ml-2 mr-2">
+        <div class="row">
+          <h4 class="mt-4 ml-2">A message from the dev:</h4>
+          <div class="ml-auto mr-2 mt-2">
+            <img
+              src="/media/DP.jpg"
+              alt="Uh, welp. :v"
+              class="img-circle elevation-3"
+              style="height: 80px; width: 80px; opacity: 0.8"
+            />
+          </div>
         </div>
-      {% endfor %}
-    {% endif %}
-    <!-- /FLASH MESSAGE block -->
+        <i style="font-family: Roboto">
+          <b>Hi, there! I am Teppy!</b><br />
+          <hr />
+          In the light of the COVID-19 global pandemic outbreak in 2020
+          <i>(specifically in March here in the Philippines)</i>, I decided to
+          try to create a website. <i>(Yeah... I just tried!)</i> This was
+          because I already had my eye on learning programming using Python a
+          year or two prior and I already am quite knowledgeable of its basics
+          <i
+            >(I was trying to create my own Android app a few months before the
+            pandemic broke out, too. Seems like I failed at it, tho.)</i
+          ><br />
+          Hey! Did I mention I just searched for "learning programming" on
+          YouTube <i>(2017, I think...)</i> while working as a
+          <i>"call-center agent"?</i> Also, I am a Business Ad graduate
+          <i>(bragging rights?).</i> <br />
 
-    {% if user.is_authenticated %}
+          Cutting-off all the umimportant parts of the story: I just decided
+          that since there will be quite a boring time spending days at home
+          doing barely "just anything", I'll try to be as productive as I can
+          be. I also came across this quote saying:<br /><br />
 
-    	<!-- the actual dynamic area for the website -->
-    	{% block main_content %} {% endblock main_content %}
+          <b
+            >"If you don't get a skill or improve one during this home
+            quarantine period, you never lacked time; YOU LACKED DISCIPLINE."</b
+          ><br /><br />
 
-    {% else %}
-
-      {% block login_area %} 
-      <div class="row">
-        <div class="border border-success text-justify text-sm ml-3" style="background-color: rgba(0,150,150,.3); width: 450px">
-                  <!-- ABOUT THE DEV -->
-                  <div class="ml-2 mr-2">
-                      <div class="row">
-                          <h4 class="mt-4 ml-2">A message from the dev:</h4>
-                        <div class="ml-auto mr-2 mt-2 ">
-                            <img src="/media/DP.jpg" alt="me&mydog" class="img-circle elevation-3" style="height: 80px; width: 80px; opacity: .8">
-                        </div>
-                      </div>
-                      <i style="font-family: Roboto">
-                      <b>Hi there! I am Teppy and this dog with me is Tico!</b><br>
-                      <hr>
-                      In the light of the COVID-19 global pandemic outbreak in 2020 <i>(specifically in March here in the Philippines)</i>, I decided to try to create a website. <i>(Yeah... I just tried!)</i> This was because I already had my eye on learning programming using Python a year or two prior and I already am quite knowledgeable of its basics <i>(I was trying to create my own Android app a few months before the pandemic broke out, too. Seems like I failed at it, tho.)</i><br>
-                      Hey! Did I mention I just searched for "learning programming" on YouTube <i>(2017, I think...)</i> while working as a <i>"call-center agent"?</i> Also, I am a Business Ad graduate <i>(bragging rights?).</i> <br>
-
-                      Cutting-off all the umimportant parts of the story: I just decided that since there will be quite a boring time spending days at home doing barely "just anything", I'll try to be as productive as I can be. I also came across this quote saying:<br><br>
-
-                      <b>"If you don't get a skill or improve one during this home quarantine period, you never lacked time; YOU LACKED DISCIPLINE."</b><br><br>
-
-                      ...and the rest is what can be seen on this website. ;)<br>
-                      <hr>
-                      Many, many thanks to all my online mentors <i>(who don't know me, of course!)</i> for the knowledge they shared which enabled me to create this <b>fascinating</b> <i>(what? just kidding!)</i> website!
-                      <ul>
-                        <li><a href="#">Sentdex</a>, <a href="#">CleverProgrammer</a>, <a href="#">CoreyMS</a>, <a href="#">CodingforEntrepreneurs</a>, <a href="#">DennisIvy</a> and <a href="#">TechWithTim</a> - for Python's basics, different Django apps tutorials and many other different Python coding techniques,</li>
-                        <li>...and to all others <i>(2m2m)</i> whom I owe the ideas collaborated into this website. <i>(Special mention: <b>StackOverflow)</b></i></li>
-                        <b>I OWE YOU ALL BIGTIME! <div class="fa fa-heart"></div></b>
-                      </ul>
-                      With this, I hope to inspire those who want to learn programming, as well.
-                      <br>
-                      <br> 
-                      </i>
-                    </div>
-        </div>
+          ...and the rest is what can be seen on this website. ;)<br />
+          <hr />
+          Many, many thanks to all my online mentors
+          <i>(who don't know me, of course!)</i> for the knowledge they shared
+          which enabled me to create this <b>fascinating</b>
+          <i>(what? just kidding!)</i> website!
+          <ul>
+            <li>
+              <a href="#">Sentdex</a>, <a href="#">CleverProgrammer</a>,
+              <a href="#">CoreyMS</a>, <a href="#">CodingforEntrepreneurs</a>,
+              <a href="#">DennisIvy</a> and <a href="#">TechWithTim</a> - for
+              Python's basics, different Django apps tutorials and many other
+              different Python coding techniques,
+            </li>
+            <li>
+              ...and to all others <i>(2m2m)</i> whom I owe the ideas
+              collaborated into this website.
+              <i>(Special mention: <b>StackOverflow)</b></i>
+            </li>
+            <b
+              >I OWE YOU ALL BIGTIME!
+              <div class="fa fa-heart"></div
+            ></b>
+          </ul>
+          With this, I hope to inspire those who want to learn programming, as
+          well.
+          <br />
+          <br />
+        </i>
       </div>
-      {% endblock login_area %}
-      
-    {% endif %} <!-- /user.is_authenticated -->
+    </div>
+  </div>
+  {% endblock login_area %} {% endif %}
+  <!-- /user.is_authenticated -->
 </div>
 
 {% endblock landing_page %}

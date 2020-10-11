@@ -1,116 +1,154 @@
-{% extends 'blog/blog_base.html' %}
-{% load crispy_forms_tags %}
-{% load markdown_deux_tags %}
+{% extends 'blog/blog_base.html' %} {% load crispy_forms_tags %} {% load
+markdown_deux_tags %} {% block blog_content %}
 
+<div
+  class="container-fluid border border-success ml-1"
+  style="background-color: rgba(1, 0, 0, 0.2)"
+>
+  <!-- PAGINATION PART for users' posts area -->
+  <div class="row">
+    <div class="col-4 ml-2 mt-2">
+      <h4>All-users' posts ({{ page_obj.paginator.count }} posts)</h4>
+      <hr />
+      <div>
+        {% if is_paginated %}
+        <a class="btn btn-sm btn-outline-info mb-4" href="?page=1"> First </a>
+        {% for num in page_obj.paginator.page_range %} {% if page_obj.number ==
+        num %}
+        <a class="btn btn-sm btn-info mb-4" href="?page={{ num }}">
+          {{ num }}
+        </a>
+        {% elif num > page_obj.number|add:'-5' and num < page_obj.number|add:'5'
+        %}
+        <a class="btn btn-sm btn-outline-info mb-4" href="?page={{ num }}">
+          {{ num }}
+        </a>
+        {% endif %} {% endfor %}
+        <a
+          class="btn btn-sm btn-outline-info mb-4"
+          href="?page={{ page_obj.paginator.num_pages }}"
+        >
+          Last
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-7 border border-info ml-auto mb-1 mt-2 mr-2">
+      Reminders for posting<br />
+      Further reminder <br />
+      Another reminder <br />
+    </div>
+  </div>
 
+  <hr />
+  {% for post in posts %}
+  <div class="border border-success mt-1 mb-1">
+    <article class="media content-section ml-2 mt-2 mb-3">
+      <img
+        class="rounded-circle article-img"
+        src="{{ post.author.profile.image.url }}"
+        style="height: 50px; width: 50px"
+      />
 
-{% block blog_content %}
+      <div class="media-body">
+        <div class="article-metadata">
+          <div class="row" style="font-size: 12px">
+            <a
+              class="ml-3 mr-5"
+              href="{% url 'profile' post.author %}"
+              style="font-family: 'Arial'; color: black"
+              >{{ post.author }}</a
+            >
+            <!-- profile badges (chess pieces) -->
+            {% if post.author.profile.user_group == "Pawn" %}
+            <i class="fa fa-chess-pawn" style="color: blue"></i>
+            {% elif post.author.profile.user_group == "Rook" %}
+            <i class="fa fa-chess-rook"></i>
+            {% elif post.author.profile.user_group == "Knight" %}
+            <i class="fa fa-chess-knight"></i>
+            {% elif post.author.profile.user_group == "Bishop" %}
+            <i class="fa fa-chess-bishop"></i>
+            {% elif post.author.profile.user_group == "Queen" %}
+            <i class="fa fa-chess-queen"></i>
+            {% elif post.author.profile.user_group == "King" %}
+            <i class="fa fa-chess-king" style="color: orange"></i>
+            {% endif %}
+            <small class="text-muted ml-2">
+              on {{ post.date_posted|date:"F d, Y" }}</small
+            >
 
-<div class="container-fluid border border-success ml-1" style="background-color: rgba(1,0,0,.2)">
-	<!-- PAGINATION PART for users' posts area -->
-  	<div class="row">
-		<div class='col-4 ml-2 mt-2'>
-			<h4>All-users' posts ({{ page_obj.paginator.count }} posts)</h4>
-			<hr>
-			<div>
-			{% if is_paginated %}
-				<a class='btn btn-sm btn-outline-info mb-4' href="?page=1"> First </a>
-				{% for num in page_obj.paginator.page_range %}
-					{% if page_obj.number == num %}
-						<a class='btn btn-sm btn-info mb-4' href="?page={{ num }}"> {{ num }} </a>
-					{%  elif num > page_obj.number|add:'-5' and num < page_obj.number|add:'5' %}
-						<a class='btn btn-sm btn-outline-info mb-4' href="?page={{ num }}"> {{ num }} </a>
-					{% endif %}
-				{% endfor %}
-				<a class='btn btn-sm btn-outline-info mb-4' href="?page={{ page_obj.paginator.num_pages }}"> Last </a>		
-			{% endif %}
-			</div>
-		</div>
-		<div class="col-7 border border-info ml-auto mb-1 mt-2 mr-2">
-			Reminders for posting<br>
-			Further reminder <br>
-			Another reminder <br>
-		</div>
-	</div>
-	
-	<hr>
-	{% for post in posts %}
-	<div class="border border-success mt-1 mb-1">
-		<article class="media content-section ml-2 mt-2 mb-3">
-		  <img class='rounded-circle article-img' src='{{ post.author.profile.image.url }}' style="height: 50px; width: 50px">
+            {% if post.author == user %}
+            <!-- create a whitespace here for the update&delete buttons to be moved to the right -->
+            <div class="ml-5">
+              <a
+                class="fa fa-pencil-alt text-sm ml-2 mr-2"
+                href="{% url 'post-update' post.id %}"
+              >
+              </a>
+              <a
+                class="fa fa-trash text-sm ml-2 mr-2"
+                href="{% url 'post-delete' post.id %}"
+              >
+              </a>
+              <a
+                class="btn btn-outline-info btn-sm ml-2 mr-2"
+                href="{% url 'user-posts' post.author %}"
+              >
+                All your posts
+              </a>
+              <a class="fa fa-theater-masks" href="#">likes?</a>
+            </div>
+            {% else %}
+            <div class="ml-5">
+              <a
+                class="btn btn-outline-info btn-sm"
+                href="{% url 'user-posts' post.author %}"
+              >
+                All posts by {{ post.author }}
+              </a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
 
-		  <div class="media-body">
-		    <div class="article-metadata">
-		    <div class="row" style="font-size: 12px">
-		      <a class="ml-3 mr-5" href="{% url 'profile' post.author %}" style="font-family: 'Arial'; color: black">{{ post.author }}</a>
-		      	<!-- profile badges (chess pieces) -->
-				{% if post.author.profile.user_group == "Pawn" %}
-						<i class="fa fa-chess-pawn" style="color: blue"></i>
-					{% elif post.author.profile.user_group == "Rook" %}
-						<i class="fa fa-chess-rook"></i>
-					{% elif post.author.profile.user_group == "Knight" %}
-						<i class="fa fa-chess-knight"></i>
-					{% elif post.author.profile.user_group == "Bishop" %}
-						<i class="fa fa-chess-bishop"></i>
-					{% elif post.author.profile.user_group == "Queen" %}
-						<i class="fa fa-chess-queen"></i>
-					{% elif post.author.profile.user_group == "King" %}
-						<i class="fa fa-chess-king" style="color: orange"></i>
-					{% endif %}
-				<small class="text-muted ml-2"> on {{ post.date_posted|date:"F d, Y" }}</small>
-
-		      
-		      {% if post.author == user %}
-		        <!-- create a whitespace here for the update&delete buttons to be moved to the right -->
-		        <div class="ml-5">
-			    	<a class='fa fa-pencil-alt text-sm ml-2 mr-2' href="{% url 'post-update' post.id %}">  </a>
-			    	<a class='fa fa-trash text-sm ml-2 mr-2' href="{% url 'post-delete' post.id %}">  </a>
-			    	<a class='btn btn-outline-info btn-sm ml-2 mr-2' href="{% url 'user-posts' post.author %}"> All your posts </a>
-			    	<a class="fa fa-theater-masks" href="#">likes?</a>
-			    </div>
-		      {% else %}
-		    	<div class="ml-5">
-		        	<a class='btn btn-outline-info btn-sm' href="{% url 'user-posts' post.author %}"> All posts by {{ post.author }} </a>
-		    	</div>
-		      {% endif %}
-			</div>
-			</div>
-
-			<!-- post.id argument was needed here for individual posts to be displayed -->
-			<div class="row">
-		    <h6><a class="article-title col-4 ml-3" href=" {% url 'post-detail' post.id %}">
-		    	{{ post.title|truncatechars:100 }}</a></h6>
-		    	<div class=" col-2 ml-5">
-		    		<small><i>Tag: {{post.tag}}</i></small>
-		    	</div>
-		    </div>
-		    	{% if post.date_modified != post.date_posted %}
-				    <i class="dropwdown-divider mr-auto text-muted">
-				    	<small>last modified: {{ post.date_modified }}</small>
-				    </i>
-		    	{% endif %}
-		  </div>
-		</article>
-	</div>
-	{% endfor %}
-
-	{% if is_paginated %}
-		<a class='btn  btn-sm btn-outline-info mb-4' href="?page=1"> First </a>
-		{% for num in page_obj.paginator.page_range %}
-			{% if page_obj.number == num %}
-				<a class='btn btn-sm btn-info mb-4' href="?page={{ num }}"> {{ num }} </a>
-			{%  elif num > page_obj.number|add:'-5' and num < page_obj.number|add:'5' %}
-				<a class='btn btn-sm btn-outline-info mb-4' href="?page={{ num }}"> {{ num }} </a>
-			{% endif %}
-		{% endfor %}
-		<a class='btn btn-sm btn-outline-info mb-4' href="?page={{ page_obj.paginator.num_pages }}"> Last </a>		
-	{% endif %}
-
-
-
-
-
-
+        <!-- post.id argument was needed here for individual posts to be displayed -->
+        <div class="row">
+          <h6>
+            <a
+              class="article-title col-4 ml-3"
+              href=" {% url 'post-detail' post.id %}"
+            >
+              {{ post.title|truncatechars:100 }}</a
+            >
+          </h6>
+          <div class="col-2 ml-5">
+            <small><i>Tag: {{post.tag}}</i></small>
+          </div>
+        </div>
+        {% if post.date_modified != post.date_posted %}
+        <i class="dropwdown-divider mr-auto text-muted">
+          <small>last modified: {{ post.date_modified }}</small>
+        </i>
+        {% endif %}
+      </div>
+    </article>
+  </div>
+  {% endfor %} {% if is_paginated %}
+  <a class="btn btn-sm btn-outline-info mb-4" href="?page=1"> First </a>
+  {% for num in page_obj.paginator.page_range %} {% if page_obj.number == num %}
+  <a class="btn btn-sm btn-info mb-4" href="?page={{ num }}"> {{ num }} </a>
+  {% elif num > page_obj.number|add:'-5' and num < page_obj.number|add:'5' %}
+  <a class="btn btn-sm btn-outline-info mb-4" href="?page={{ num }}">
+    {{ num }}
+  </a>
+  {% endif %} {% endfor %}
+  <a
+    class="btn btn-sm btn-outline-info mb-4"
+    href="?page={{ page_obj.paginator.num_pages }}"
+  >
+    Last
+  </a>
+  {% endif %}
 </div>
 
 {% endblock blog_content %}

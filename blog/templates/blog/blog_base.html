@@ -1,44 +1,44 @@
-{% extends 'home/landing.html' %}
-
-{% load crispy_forms_tags %}
-{% block pagedown_head %}
-	{{ form.media }}
-{% endblock pagedown_head %}
-
-
-{% block main_content %} <!-- from the main template: home/starter.html -->
+{% extends 'home/landing.html' %} {% load crispy_forms_tags %} {% block
+pagedown_head %} {{ form.media }} {% endblock pagedown_head %} {% block
+main_content %}
+<!-- from the main template: home/starter.html -->
 
 <!-- this block will contain the default look for the blog app -->
-	<div class="row">
-		<div class="ml-auto mt-3">
-			Blog Banner
-		</div>
-		<div class="ml-auto mt-3">
-			Dropdown Post-Filter here
-		</div>
-		<div class="ml-auto">
-			<a class='btn btn-outline-primary ml-5 mr-2 mt-3 mb-2' href="{% url 'post-new' %}"> Create a Post </a>
-			or
-			<button class="quickpost btn btn-success ml-2 mt-3 mb-2" type="button" data-target="modal" name="button">Quick Post</button>
-		</div>
-		<div class="text text-muted ml-3">
-			<small>
-				<b>Create a Post</b> for styled postings.<br>
-				<b>Quick Post</b> for plain text posts.
-			</small>
-		</div>
-	</div>
-
+<div class="row">
+  <div class="ml-auto mt-3">Blog Banner</div>
+  <div class="ml-auto mt-3">Dropdown Post-Filter here</div>
+  <div class="ml-auto">
+    <a
+      class="btn btn-outline-primary ml-5 mr-2 mt-3 mb-2"
+      href="{% url 'post-new' %}"
+    >
+      Create a Post
+    </a>
+    or
+    <button
+      class="quickpost btn btn-success ml-2 mt-3 mb-2"
+      type="button"
+      data-target="modal"
+      name="button"
+    >
+      Quick Post
+    </button>
+  </div>
+  <div class="text text-muted ml-3">
+    <small>
+      <b>Create a Post</b> for styled postings.<br />
+      <b>Quick Post</b> for plain text posts.
+    </small>
+  </div>
+</div>
 
 <div class="modal fade" tabindex="-1" role="dialog" id="modal">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-		</div>
-	</div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
 </div>
-<button id="quickpost" class="btn btn-primary" type="button" name="button">quickpost</button>
+<button id="quickpost" class="btn btn-primary" type="button" name="button">
+  quickpost
+</button>
 <!-- the actual content for the blog app inside the main_content block -->
-{% block blog_content %} {% endblock blog_content %}
-
-{% endblock main_content %}
-
+{% block blog_content %} {% endblock blog_content %} {% endblock main_content %}

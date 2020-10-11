@@ -4,10 +4,7 @@
 {% block main_content %}
 <h2>{{object.title}}</h2>
 <div class="container-fluid border border-success">
-
 	<article class="media content-section">
-
-
 	  <div class="media-body">
 	    <div class="article-metadata">
 	    	{% if object.author == request.user %}
@@ -25,7 +22,6 @@
 	        	<a class='btn btn-outline-success btn-sm fa fa-thumbs-up mr-1' href="#">Up</a>
 	        	<a class='btn btn-outline-danger btn-sm fa fa-thumbs-down mr-1' href="#">Down</a>
 	        {% endif %}
-
 	    </div>
 	    <h2 class="article-title">{{ object.message|linebreaks }}</h2>
 	  </div>
