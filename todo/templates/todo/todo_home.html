@@ -1,16 +1,17 @@
-{% extends 'home/landing.html' %} {% block main_content %}
+{% extends 'home/landing.html' %}
+
+{% block main_content %}
 
 <div class="container-fluid">
   <h2>Your To-Do's</h2>
-  maybe remove the detailview as it will just be redundant <br />
+  maybe remove this detailview as it will just be redundant <br />
   add complete/delete buttons for each
   <div class="row">
     <div class="col-8">
       <hr />
       {% for todo in todos %}
       <a class="text text-lg" href="{% url 'todo-detail' todo.id %}">
-        Category: {{ todo.category }}</a
-      >
+        Category: {{ todo.category }}</a>
       <div class="text text-sm">Description: {{ todo.desc|linebreaks }}</div>
       <div class="row">
         <div class="text text-sm ml-2">Status: {{ todo.status }}</div>
@@ -25,6 +26,7 @@
       >
     </div>
   </div>
-
-  {% endblock main_content %}
 </div>
+
+{% endblock main_content %}
+

@@ -1,5 +1,8 @@
-{% extends 'blog/blog_base.html' %} {% load crispy_forms_tags %} {% load
-markdown_deux_tags %} {% block blog_content %}
+{% extends 'blog/blog_base.html' %}
+{% load crispy_forms_tags %} 
+{% load markdown_deux_tags %}
+
+{% block blog_content %}
 
 <div
   class="container-fluid border border-success ml-1"
@@ -12,22 +15,20 @@ markdown_deux_tags %} {% block blog_content %}
       <hr />
       <div>
         {% if is_paginated %}
-        <a class="btn btn-sm btn-outline-info mb-4" href="?page=1"> First </a>
-        {% for num in page_obj.paginator.page_range %} {% if page_obj.number ==
-        num %}
-        <a class="btn btn-sm btn-info mb-4" href="?page={{ num }}">
-          {{ num }}
-        </a>
-        {% elif num > page_obj.number|add:'-5' and num < page_obj.number|add:'5'
-        %}
-        <a class="btn btn-sm btn-outline-info mb-4" href="?page={{ num }}">
-          {{ num }}
-        </a>
-        {% endif %} {% endfor %}
+          <a class="btn btn-sm btn-outline-info mb-4" href="?page=1"> First </a>
+          {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+              <a class="btn btn-sm btn-info mb-4" href="?page={{ num }}">
+                {{ num }}
+              </a>
+            {% elif num > page_obj.number|add:'-5' and num < page_obj.number|add:'5' %}
+              <a class="btn btn-sm btn-outline-info mb-4" href="?page={{ num }}">
+                {{ num }}
+              </a>
+            {% endif %}
+          {% endfor %}
         <a
-          class="btn btn-sm btn-outline-info mb-4"
-          href="?page={{ page_obj.paginator.num_pages }}"
-        >
+          class="btn btn-sm btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">
           Last
         </a>
         {% endif %}
@@ -47,8 +48,7 @@ markdown_deux_tags %} {% block blog_content %}
       <img
         class="rounded-circle article-img"
         src="{{ post.author.profile.image.url }}"
-        style="height: 50px; width: 50px"
-      />
+        style="height: 50px; width: 50px">
 
       <div class="media-body">
         <div class="article-metadata">
@@ -57,8 +57,7 @@ markdown_deux_tags %} {% block blog_content %}
               class="ml-3 mr-5"
               href="{% url 'profile' post.author %}"
               style="font-family: 'Arial'; color: black"
-              >{{ post.author }}</a
-            >
+              >{{ post.author }}</a>
             <!-- profile badges (chess pieces) -->
             {% if post.author.profile.user_group == "Pawn" %}
             <i class="fa fa-chess-pawn" style="color: blue"></i>

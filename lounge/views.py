@@ -19,7 +19,7 @@ class LoungeListView(ListView):
 	context_object_name = 'u_letters'
 	template_name = 'lounge/lounge_home.html'	
 	ordering = ['-date_posted']
-	paginate_by = 10
+	paginate_by = 3
 
 
 # class UserToDoListView(ListView):

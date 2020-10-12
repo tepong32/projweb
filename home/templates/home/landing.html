@@ -19,8 +19,9 @@ The 'home' button on the navbar serves as the 'feed' (newsfeed) page for logged-
   {% if user.is_authenticated %}
 
   <!-- the actual dynamic area for the website -->
-  {% block main_content %} {% endblock main_content %} {% else %} {% block
-  login_area %}
+  {% block main_content %} {% endblock main_content %}
+  {% else %} 
+  {% block login_area %}
   <div class="row">
     <div
       class="border border-success text-justify text-sm ml-3"
