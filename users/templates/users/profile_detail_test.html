@@ -18,17 +18,17 @@
           <i class="widget-user-username">
             <!-- USER BADGES DEPENDING ON USER_GROUP -->
             {% if user.profile.user_group == "Pawn" %}
-            <i class="fa fa-chess-pawn ml-3"></i>
+            <i class="fas fa-chess-pawn ml-3"></i>
             {% elif user.profile.user_group == "Rook" %}
-            <i class="fa fa-chess-rook ml-3"></i>
+            <i class="fas fa-chess-rook ml-3"></i>
             {% elif user.profile.user_group == "Knight" %}
-            <i class="fa fa-chess-knight ml-3"></i>
+            <i class="fas fa-chess-knight ml-3"></i>
             {% elif user.profile.user_group == "Bishop" %}
-            <i class="fa fa-chess-bishop ml-3"></i>
+            <i class="fas fa-chess-bishop ml-3"></i>
             {% elif user.profile.user_group == "Queen" %}
-            <i class="fa fa-chess-queen ml-3"></i>
+            <i class="fas fa-chess-queen ml-3"></i>
             {% elif user.profile.user_group == "King" %}
-            <i class="fa fa-chess-king ml-3"></i>
+            <i class="fas fa-chess-king ml-3"></i>
             {% endif %}
           </i>
           <small
@@ -58,7 +58,7 @@
                   {% if user.username == request.user.username %}
                   <div>
                     <a
-                      class="fa fa-pen ml-4"
+                      class="fa fa-edit ml-4"
                       style="color: yellow"
                       href="{% url 'profile-edit' user.username %}"
                     ></a>
@@ -69,18 +69,23 @@
                 <div class="content-section">
                   <div class="media">
                     <p class="media-body text-light ml-3">
-                      <strong><i>{{ user.profile.quote }}</i></strong>
+                      <strong><i>"{{ user.profile.quote }}"</i></strong>
                     </p>
                   </div>
                 </div>
               </div>
-              <div class="container col-md-3">
-                qr code<br />
-                wallet address
+              <div class="container col-md-2">
+                <div class="row" style="align-items: center">
+                  <!-- write if/else for blank fields here -->
+                  <i class="fa fa-google ml-1 mr-1" aria-hidden="true"></i>
+                  <i class="fa fa-linkedin-square ml-1 mr-1" aria-hidden="true"></i>
+                  <i class="fa fa-facebook-official ml-1 mr-1" aria-hidden="true"></i>
+                  <i class="fa fa-twitter-square ml-1 mr-1" aria-hidden="true"></i>
+                  <i class="fa fa-instagram ml-1 mr-1" aria-hidden="true"></i>
+                  <i class="fa fa-github ml-1 mr-1" aria-hidden="true"></i>
+                </div>
                 <div>
-                  <a class="btn btn-outline-dark btn-sm mr-1 mt-3" href="#">
-                    Send a message
-                  </a>
+                  <a class="btn btn-outline-dark btn-sm mr-1 mt-3" href="#">Send a message</a>
                 </div>
               </div>
             </div>
@@ -88,7 +93,7 @@
         </div>
         <div class="card-footer" style="font-size: 12px; min-height: 500px">
           <div class="row">
-            <div class="col-5 col-sm-3">
+            <div class="col-5 col-sm-2">
               <div
                 class="nav flex-column nav-tabs nav-tabs-right h-100"
                 id="vert-tabs-right-tab"
@@ -128,7 +133,7 @@
               </div>
             </div>
 
-            <div class="overflow-auto col-7 col-sm-9 border border-dark" style="min-height: 450px">
+            <div class="overflow-auto col-7 col-sm-10 border border-dark" style="min-height: 450px">
               <div class="tab-content" id="vert-tabs-right-tabContent">
                 <div
                   class="tab-pane fade"
