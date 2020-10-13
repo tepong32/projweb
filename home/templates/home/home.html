@@ -8,155 +8,163 @@ Just viewable by logged-in users.  -->
 
 {% block main_content %}
 <div class="container-fluid">
-	<div class="row">
-		<div class="col">
-			<!-- post panel area -->
+  <div class="row">
+    <div class="col-12">
+      <!-- post panel area -->
             <div class="card card-primary">
-              <div class="card-body">
+              <div class="card-body" style="padding: 5px">
                 <div class="card card-widget widget-user">
 
               <!-- bg color for profiles depending on user_group -->
               <!-- other user_group color options are tbd -->
               {% if user.profile.user_group == "King" %}
-              	<div class="widget-user-header bg-purple">
+                <div class="widget-user-header bg-purple">
               {% elif user.profile.user_group == "Pawn" %}
-              	<div class="widget-user-header bg-primary">
+                <div class="widget-user-header bg-primary">
 
 
               {% endif %}
 
-              	<!-- icon displayed based on user_group -->
+                <!-- icon displayed based on user_group -->
                 <h3 class="widget-user-username">
-                	<!-- USER BADGES DEPENDING ON USER_GROUP -->
-		      		{% if user.profile.user_group == "Pawn" %}
-		      			<i class="fa fa-chess-pawn ml-3"></i>
-		      		{% elif user.profile.user_group == "Rook" %}
-		      			<i class="fa fa-chess-rook ml-3"></i>
-		      		{% elif user.profile.user_group == "Knight" %}
-		      			<i class="fa fa-chess-knight ml-3"></i>
-		      		{% elif user.profile.user_group == "Bishop" %}
-		      			<i class="fa fa-chess-bishop ml-3"></i>
-		      		{% elif user.profile.user_group == "Queen" %}
-		      			<i class="fa fa-chess-queen ml-3"></i>
-		      		{% elif user.profile.user_group == "King" %}
-		      			<i class="fa fa-chess-king ml-3"></i>
-		      		{% endif %}
+                  <!-- USER BADGES DEPENDING ON USER_GROUP -->
+              {% if user.profile.user_group == "Pawn" %}
+                <i class="fas fa-chess-pawn ml-3"></i>
+              {% elif user.profile.user_group == "Rook" %}
+                <i class="fas fa-chess-rook ml-3"></i>
+              {% elif user.profile.user_group == "Knight" %}
+                <i class="fas fa-chess-knight ml-3"></i>
+              {% elif user.profile.user_group == "Bishop" %}
+                <i class="fas fa-chess-bishop ml-3"></i>
+              {% elif user.profile.user_group == "Queen" %}
+                <i class="fas fa-chess-queen ml-3"></i>
+              {% elif user.profile.user_group == "King" %}
+                <i class="fas fa-chess-king ml-3"></i>
+              {% endif %}
                 </h3>
 
-			    <div class="content-section">
-				  <div class="media">
-				    <img class="rounded-circle account-img elevation-5" src="{{ user.profile.image.url }}" style="height: 120px; width: 100px">
-				    <div class="media-body">
-				    	<div class="row">
-				      		<h4 class="account-heading ml-3"><strong> {{ user.username }} </strong></h4>
-				      	</div>
-				    </div>
-				      <!-- create post link -->
-				      <div class="col">
-				      	<div class="row">
-				      	  <a class='btn btn-dark btn-outline-light mt-3 mb-2' href="{% url 'post-new' %}">
-				      	  	+<li class="fa fa-comments" style="color: cyan"></li> 
-				      	  </a>
-				      	  <a class='btn btn-dark btn-outline-light mt-3 mb-2 ml-2' href="{% url 'todo-new' %}">
-				      	  	+<li class="nav-icon fa fa-exclamation" style="color: pink"></li>
-				      	  </a>
-					    </div>
-				      </div>
-				    </div>
-			    </div>
-			  </div>
-			</div>
-		  </div>
-		<!-- / post panel area-->
-		</div>
+          <div class="content-section">
+          <div class="media">
+            <img class="rounded-circle account-img elevation-5" src="{{ user.profile.image.url }}" style="height: 120px; width: 100px">
+            <div class="media-body">
+              <div class="row">
+                  <h4 class="account-heading ml-3"><strong> {{ user.username }} </strong></h4>
+                </div>
+            </div>
+              <!-- create post div -->
+              <div class="col">
+                <div class="row">
+                  <div style="background-color: transparent; padding: 0.2rem">
+                    <a class='btn btn-dark btn-outline-light' href="{% url 'post-new' %}">
+                      +<li class="fa fa-comments" style="color: cyan"></li> 
+                    </a>
+                    <a class='btn btn-dark btn-outline-light ml-2' href="{% url 'todo-new' %}">
+                      +<li class="nav-icon fa fa-exclamation" style="color: cyan"></li>
+                    </a>
+                  </div>
+                  <!-- navigation div -->
+                  <div class="col" style="background-color: transparent; padding: 0.2rem">
+                    <a class="btn btn-dark btn-outline-light ml-2" href="{% url 'profile' request.user.username %}">
+                      <i class="fa fa-user"></i>
+                    </a>
+                    <a class="btn btn-dark btn-outline-light ml-2" href="{% url 'blog-home' %}">
+                      <i class="fa fa-comments"></i>
+                    </a>
+                  </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    <!-- / post panel area-->
+    </div>
 
-		<!-- pinax announcements area -->
-		<h3>Announcements</h3>
-		 (link to announcement/wb page)
+<div class="wrapper row">
+    <div class="col col-8">
+    <!-- feed area -->
+    <div class="container-fluid border" >
+      <div class="row">
+        <col><h4>Newest Posts</h4>
+        <i class="ml-auto">filter here </i>
+      </div>
+      {% for post in blogposts %}
+  <div class="border border-success mt-1 mb-1">
+    <article class="media media-sm content-section ml-2 mt-2 mb-3">
+      <img class='rounded-circle article-img' src='{{ post.author.profile.image.url }}' style="height: 30px; width: 30px">
 
-		<!-- feed area -->
-		<div class="container-fluid border" >
-			<div class="row">
-				<col><h4>Newest Posts</h4>
-				<i class="ml-auto">filter here </i>
-			</div>
-			{% for post in blogposts %}
-	<div class="border border-success mt-1 mb-1">
-		<article class="media media-sm content-section ml-2 mt-2 mb-3">
-		  <img class='rounded-circle article-img' src='{{ post.author.profile.image.url }}' style="height: 30px; width: 30px">
+      <div class="media-body">
+        <div class="article-metadata">
+        <div class="row">
+          <a class="ml-3" href="{% url 'profile' post.author %}" style="font-family: 'Monotype Corsiva'; color: green">
+            <i><u>{{ post.author }}</u></i>
+          </a>
+        
 
-		  <div class="media-body">
-		    <div class="article-metadata">
-		    <div class="row">
-		      <a class="ml-3" href="{% url 'profile' post.author %}" style="font-family: 'Monotype Corsiva'; color: green">
-		      	<i><u>{{ post.author }}</u></i>
-		      </a>
-				
+          
+          {% if post.author == user %}
+            <!-- create a whitespace here for the update&delete buttons to be moved to the right -->
+            <small class="ml-3">
+            <a class='fa fa-edit text-sm ml-2 mr-1' href="{% url 'post-update' post.id %}">  </a>
+            <a class='fa fa-trash text-sm ml-1 mr-1' href="{% url 'post-delete' post.id %}" style="color: red">  </a>
+            <a class='btn btn-sm ml-2 mr-2' href="{% url 'user-posts' post.author %}"> <small>Your posts</small> </a>
+            <small class="text-muted ml-2"><i class="fa fa-tag">: {{post.tag}}</i></small>
+            
+          </small>
+          {% else %}
+          <small class="ml-3">
+              <a class='btn btn-sm' href="{% url 'user-posts' post.author %}"> <small>{{ post.author }}'s posts</small> </a>
+              <a class="fa fa-thumbs-up" href="#"></a>
+            <small class="text-muted ml-2"><i class="fa fa-tag">: {{post.tag}}</i></small>
+          </small>
+          {% endif %}
+      </div>
+      </div>
 
-		      
-		      {% if post.author == user %}
-		        <!-- create a whitespace here for the update&delete buttons to be moved to the right -->
-		        <small class="ml-3">
-			    	<a class='fa fa-pencil-alt text-sm ml-2 mr-2' href="{% url 'post-update' post.id %}">  </a>
-			    	<a class='fa fa-trash text-sm ml-2 mr-2' href="{% url 'post-delete' post.id %}" style="color: red">  </a>
-			    	<a class='btn btn-sm ml-2 mr-2' href="{% url 'user-posts' post.author %}"> <small>All your posts</small> </a>
-			    	<small class="text-muted ml-2"><i class="fa fa-tag">: {{post.tag}}</i></small>
-			    	
-			    </small>
-		      {% else %}
-		    	<small class="ml-3">
-		        	<a class='btn btn-sm' href="{% url 'user-posts' post.author %}"> <small>All posts by {{ post.author }}</small> </a>
-		        	<a class="fa fa-thumbs-up" href="#"></a>
-		    		<small class="text-muted ml-2"><i class="fa fa-tag">: {{post.tag}}</i></small>
-		    	</small>
-		      {% endif %}
-			</div>
-			</div>
+      <!-- post.id argument was needed here for individual posts to be displayed -->
+      <div class="row">
+        <a class="article-title col ml-3" href=" {% url 'post-detail' post.id %}">
+          {{ post.title|truncatechars:50 }}</a>
+          <div class=" col ml-5">
+            <small>
+              on {{ post.date_posted|date:"F d, Y" }}
+            </small>
+          </div>
+        </div>
+          {% if post.modified %}
+            <i class="dropwdown-divider mr-auto text-muted">
+              <small>last modified: {{ post.date_modified }}</small>
+            </i>
+          {% endif %}
+      </div>
+    </article>
+  </div>
+  {% endfor %}
 
-			<!-- post.id argument was needed here for individual posts to be displayed -->
-			<div class="row">
-		    <a class="article-title col ml-3" href=" {% url 'post-detail' post.id %}">
-		    	{{ post.title|truncatechars:50 }}</a>
-		    	<div class=" col ml-5">
-		    		<small>
-		    			on {{ post.date_posted|date:"F d, Y" }}
-		    		</small>
-		    	</div>
-		    </div>
-		    	{% if post.modified %}
-				    <i class="dropwdown-divider mr-auto text-muted">
-				    	<small>last modified: {{ post.date_modified }}</small>
-				    </i>
-		    	{% endif %}
-		  </div>
-		</article>
-	</div>
-	{% endfor %}
-
-	{% if is_paginated %}
-		<a class='btn  btn-sm btn-outline-info mb-4' href="?page=1"> First </a>
-		{% for num in page_obj.paginator.page_range %}
-			{% if page_obj.number == num %}
-				<a class='btn btn-sm btn-info mb-4' href="?page={{ num }}"> {{ num }} </a>
-			{%  elif num > page_obj.number|add:'-5' and num < page_obj.number|add:'5' %}
-				<a class='btn btn-sm btn-outline-info mb-4' href="?page={{ num }}"> {{ num }} </a>
-			{% endif %}
-		{% endfor %}
-		<a class='btn btn-sm btn-outline-info mb-4' href="?page={{ page_obj.paginator.num_pages }}"> Last </a>		
-	{% endif %}
-		</div>
-		<!-- / feed area -->
-
-	</div>
+  {% if is_paginated %}
+    <a class='btn  btn-sm btn-outline-info mb-4' href="?page=1"> First </a>
+    {% for num in page_obj.paginator.page_range %}
+      {% if page_obj.number == num %}
+        <a class='btn btn-sm btn-info mb-4' href="?page={{ num }}"> {{ num }} </a>
+      {%  elif num > page_obj.number|add:'-5' and num < page_obj.number|add:'5' %}
+        <a class='btn btn-sm btn-outline-info mb-4' href="?page={{ num }}"> {{ num }} </a>
+      {% endif %}
+    {% endfor %}
+    <a class='btn btn-sm btn-outline-info mb-4' href="?page={{ page_obj.paginator.num_pages }}"> Last </a>    
+  {% endif %}
+    </div>
+    <!-- / feed area -->
+  </div>
 
 
 
 <!-- /1st row right -->
 <!-- outmost div rightcontaining todo and the part below it (column-wise) -->
-<div class="container-fluid col" style="height: 800px">
+<div class="container-fluid col-4" style="height: 800px">
   <!-- TODO part -->
   <div class="container">
-		  	
+        
 <!-- ToDo list -->
 <div class="card card-warning">
   <div class="card-header">
@@ -171,70 +179,72 @@ Just viewable by logged-in users.  -->
 <div class="card-body">
     <div class="card card-widget widget-user">
     <div class="content-section border border-warning">
-	  <div class="media">
-	    <div class="media-body text-justify overflow-auto" style="padding: .5rem; max-height: 250px">
-	    	{% for todo in todos %}
-	    		<hr>
-				<div clas="row">
-					<i class="text text-sm text-muted" href="#"><b>{{ todo.category }}</b></i>
-					</i>
-			    	<a class='fa fa-pencil-alt text-sm ml-5 mr-1' href="{% url 'todo-update' todo.id %}"></a>
-			    	<a class='fa fa-trash text-sm ml-2 mr-1' href="{% url 'todo-delete' todo.id %}"></a>
-			    	<i class="text-sm"><small class="text pull-right ml-5"> Finish by: <text class="text-danger">{{ todo.finish_by }}</text></small></i>
-			    	
-				</div>
-				<div class="text text-sm ml-3"> {{ todo.desc|linebreaks }}</div>
-				<div class="row ml-3">
-					<div class="text text-sm"> Status (might not be needed anymore): {{ todo.status }} </div>
-				</div>
-				<hr>
-			{% endfor %}
-	  </div>
+    <div class="media">
+      <div class="media-body text-justify overflow-auto" style="padding: .5rem; max-height: 250px">
+        {% for todo in todos %}
+          <hr>
+        <div clas="row">
+          <i class="text text-sm text-muted" href="#"><b>{{ todo.category }}</b></i>
+          </i>
+            <a class='fa fa-edit text-sm ml-2 mr-1' href="{% url 'todo-update' todo.id %}"></a>
+            <a class='fa fa-trash text-sm ml-1 mr-1' href="{% url 'todo-delete' todo.id %}" style="color: red"></a>
+            <i class="text-sm"><small class="text pull-right ml-5"> Finish by: <text class="text-danger">{{ todo.finish_by }}</text></small></i>
+            
+        </div>
+        <div class="text text-sm ml-3"> {{ todo.desc|linebreaks }}</div>
+        <div class="row ml-3">
+          <div class="text text-sm"> Status (might not be needed anymore): {{ todo.status }} </div>
+        </div>
+        <hr>
+      {% endfor %}
+    </div>
 
 </div>
   <div class="card-footer" style="font-size: 12px; background-color: rgba(0,0,1,.15);">
     <div class="row">
-    	Got something to do later? Create a reminder and see it here everytime you check back in!
+      Got something to do later? Create a reminder and see it here everytime you check back in!
       </div>   
             </div>
           </div>
       </div>
-	</div>
+  </div>
 <!-- /1st row right -->
 </div>
 
 
 <!-- 2nd row right -->
 <div class="card card-dark">
-	<div class="card-header">
-		<h3 class="card-title">Members</h3>
-		<i class="text text-sm ml-2"><small>(Need help? Got suggestions?)</small></i>
-	</div>
+  <div class="card-header">
+    <h3 class="card-title">Members</h3>
+    <i class="text text-sm ml-2"><small>(Need help? Got suggestions?)</small></i>
+  </div>
 <div class="card-body">
-	{% for u in users %}
-	<div class="content-section">
-		<div class="media">
-		    <img class="rounded-circle account-img elevation-5" src="{{ u.profile.image.url }}" style="height: 30px; width: 30px">
-		    <div class="media-body">
-		    	<div class="row">
-		      		<h6 class="account-heading ml-3 mt-2">
-		      			<a href="{% url 'profile' u.username %}">{{ u.username }}</a>
-		      		</h6>
-		      		<a class='btn btn-dark btn-sm ml-auto mt-1' href="#"> message </a>
-			    </div>
-			</div>
-		</div>
-	</div>
-	{% endfor %}
+  {% for u in users %}
+  <div class="content-section">
+    <div class="media">
+        <img class="rounded-circle account-img elevation-5" src="{{ u.profile.image.url }}" style="height: 30px; width: 30px">
+        <div class="media-body">
+          <div class="row">
+              <h6 class="account-heading ml-3 mt-2">
+                <a href="{% url 'profile' u.username %}">{{ u.username }}</a>
+              </h6>
+              <a class='btn btn-dark btn-sm ml-auto mt-1' href="#"> message </a>
+          </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
 
-	<!-- /2nd row right -->
-	</div>
+  <!-- /2nd row right -->
+  </div>
 <!-- /outmost div right column -->
 </div>
 
 
 <!-- IDK where these closing tags are linked to but this made the page work so... LEAVE THEM BE. :D -->
 
+</div>
+</div>
 </div>
 </div>
 </div>
