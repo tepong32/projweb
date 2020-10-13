@@ -8,7 +8,7 @@ from django import forms	# for pagedown
 # therefore, if you're a newbie (like me) who's not knowledgeable about databases, DO NOT...
 # DO NOT just delete class attributes. Additions will do as you will just have to 'makemigrations' and 'migrate' before they take effect but deletions will ruin your database and you'll have to start from scratch to see your models' instances (scratche means 'manage.py createsuperuser'...if you know what I mean).
 
-class Announcement(models.Model):
+class SubAnnouncement(models.Model):
 	title = models.CharField(max_length=100)
 	content = models.TextField()
 	date_posted = models.DateTimeField(auto_now_add=True) #you can use "(default=timezone.now)" instead but the timezone import is needed

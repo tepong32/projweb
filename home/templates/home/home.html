@@ -1,5 +1,6 @@
 {% extends 'home/landing.html' %}
 {% load crispy_forms_tags %}
+{% load pinax_announcements_tags %}
 
 <!-- User Home page -->
 <!-- This is the page related to the <home> icon button on the navigation bar or '<domain_name>/home' url.
@@ -53,8 +54,12 @@ Just viewable by logged-in users.  -->
 				      <!-- create post link -->
 				      <div class="col">
 				      	<div class="row">
-				      	  <a class='btn btn-primary btn-outline-light mt-3 mb-2 text-sm' href="{% url 'post-new' %}"> Share something</a>
-				      	  <a class='btn btn-primary btn-outline-light mt-3 mb-2 text-sm' href="{% url 'todo-new' %}"> Add a reminder </a>
+				      	  <a class='btn btn-primary btn-outline-light mt-3 mb-2 text-sm' href="{% url 'post-new' %}">
+				      	  	+<li class="fa fa-comments"></li> 
+				      	  </a>
+				      	  <a class='btn btn-primary btn-outline-light mt-3 mb-2 text-sm' href="{% url 'todo-new' %}">
+				      	  	+<li class="nav-icon fa fa-exclamation" style="color: red"></li>
+				      	  </a>
 					    </div>
 				      </div>
 				    </div>
@@ -64,6 +69,32 @@ Just viewable by logged-in users.  -->
 		  </div>
 		<!-- / post panel area-->
 		</div>
+
+		<!-- pinax announcements area -->
+		<h3>Announcements</h3>
+
+		    {% announcements as announcement_list %}
+
+		    {% if announcement_list %}
+		        <div class="announcements">
+		            {% for announcement in announcement_list %}
+		                <div class="announcement">
+		                    <strong>{{ announcement.title }}</strong><br />
+		                    {{ announcement.content|truncatechars:150 }}<br />
+		                     <a href="{{ announcement.get_absolute_url }}">Read more...</a>
+		                </div>
+		            {% endfor %}
+		        </div>
+		    {% endif %}
+		    {% if announcement.dismiss_url %}
+		        <form class="form ajax" data-replace-closest=".announcement" action="{{ announcement.dismiss_url }}" method="post">
+		            {% csrf_token %}
+		            <button class="btn btn-default">Clear</button>
+		        </form>
+		    {% endif %}
+
+
+
 
 
 		<!-- feed area -->

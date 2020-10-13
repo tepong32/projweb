@@ -38,14 +38,13 @@ INSTALLED_APPS = [
     'adminlte3',
     'adminlte3_theme',
 
-    # local apps
+    # local apps / created by me
     'blog.apps.BlogConfig',
     'home.apps.HomeConfig',
     'lounge.apps.LoungeConfig',
     'users.apps.UsersConfig',
     'todo.apps.TodoConfig',
-
-    'utilities.apps.UtilitiesConfig',
+    'utilities.apps.UtilitiesConfig',   # not being used atm
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -54,13 +53,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # third-party app for rich text editing
-    'pagedown.apps.PagedownConfig',     
-    'markdown_deux',
+    # third-party apps // mostly for end-user rich-text editing
+    'pagedown.apps.PagedownConfig',     # what's this for??
+    
     'bootstrap_modal_forms',
-    'crispy_forms',             # to be able to use the crispy forms in the site
+    'crispy_forms',             # for better form-display formatting
+    'markdown_deux',
+    'pinax.announcements',      # announcements library # still checking out how to use this
+    'pinax.templates',
+    'bootstrapform',
+    
 
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,13 +132,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 

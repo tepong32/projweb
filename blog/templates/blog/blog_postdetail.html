@@ -65,8 +65,7 @@
     >
   </div>
 </div>
-{{ comments.count }} Comment{{ comments|pluralize }} {% for comment in comments
-%}
+{{ comments.count }} Comment{{ comments|pluralize }} {% for comment in comments %}
 <blockquote class="blockquote">
   <p class="mb-0">{{ comment.get_markdown|truncatechars:100 }}</p>
   <footer class="blockquute-footer">

@@ -12,6 +12,10 @@ urlpatterns = [
     path('', views.landing, name='landing' ),
     path('home/', views.home, name='home' ),
 
+    # get this done with pinax.announcements & pinax.templates
+    # class-based detail view needed? check blog templates
+    path('announcements/<int:pk>/', views.announcement, name='announcement-detail'),
+
     # testing func-based views
     path('test/', views.testing, name='testing' ),
 
