@@ -27,7 +27,7 @@ class Profile(models.Model):
 
 	def dp_directory_path(instance, filename):
 		# file will be uploaded to MEDIA_ROOT/DP_<username>/<filename> ---check settings.py. MEDIA_ROOT=media
-		return '{}/DP/{}'.format(instance.user.username, filename)
+		return 'users/{}/DP/{}'.format(instance.user.username, filename)
 
 	if gender == "Male":
 		image = models.ImageField(default='default_m.png', upload_to=dp_directory_path) # add validation methods for uploads
