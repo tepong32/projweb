@@ -22,7 +22,7 @@ class BlogIndexView(ListView):
     template_name = 'blog/blog_home.html'
     queryset = BlogPost.objects.all()
     ordering = ['-date_posted']			# filter for newest post first
-    paginate_by = 10					# # of posts to show per page
+    paginate_by = 10					# number of posts to show per page
 
     # already worked on screening-out the tags but the actual filter on home.html has not yet been implemented
     # might switch to a separate DetailView for each context filter, instead
@@ -35,7 +35,7 @@ class BlogIndexView(ListView):
         context['school'] = BlogPost.objects.filter(tag="School").order_by('-date_posted')
         context['social'] = BlogPost.objects.filter(tag="Social").order_by('-date_posted')
         context['tech'] = BlogPost.objects.filter(tag="Tech").order_by('-date_posted')
-        # And so on for more models
+        # and so on for more models
 
         return context
 
