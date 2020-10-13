@@ -29,7 +29,15 @@ Most likely, this page will just be seen by users who opens a new tab/window on 
                 <div class="announcement">
                     <strong>{{ announcement.title }}</strong><br />
                     {{ announcement.content }} <br/>
-                    by {{announcement.creator}}
+                    by {{announcement.creator}} <br/>
+                    {{announcement.publish_start}} | {{announcement.publish_end}}<br/>
+                    <a href="{{ announcement.get_absolute_url }}">Read more...</a>
+                    {% if announcement.dismiss_url %}
+				        <form class="form ajax" data-replace-closest=".announcement" action="{{ announcement.dismiss_url }}" method="post">
+				            {% csrf_token %}
+				            <button class="btn btn-default">Clear</button>
+				        </form>
+				    {% endif %}
                 </div>
             {% endfor %}
         </div>

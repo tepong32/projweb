@@ -25,7 +25,7 @@ def landing(request):
 def home(request):
 	user = User
 	user_list = User.objects.all()
-	paginator = Paginator(user_list, 10)
+	paginator = Paginator(user_list, 10) # not yet implemented
 	context = {
 		'todos': ToDoList.objects.filter(author=request.user).order_by("finish_by"),
 		'blogposts': BlogPost.objects.all().order_by("-date_posted"),

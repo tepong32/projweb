@@ -19,6 +19,7 @@ Kindly just check comments for better understanding of its parts. This was not m
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     {% endblock %}
 
+
     {% block stylesheets %}
         {% include 'adminlte/lib/_styles.html' %}
     {% endblock %}
@@ -78,6 +79,13 @@ Kindly just check comments for better understanding of its parts. This was not m
         <!-- all contents are to be modified with corresponding variables -->
         <ul class="navbar-nav ml-auto">
             <ul class="nav navbar-nav">
+
+                <!-- toggler for light/dark mode -->
+                <!-- not implemented yet -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link fa fa-toggle-on mt-1">
+                        <i class="fa fa-toggle-off"></i></a>
+                </li>
                 <!-- SEARCH FORM -->
                 <!-- not functioning yet -->
                 <form class="form-inline ml-3">
@@ -90,6 +98,7 @@ Kindly just check comments for better understanding of its parts. This was not m
                         </div>
                     </div>
                 </form>
+                
             </ul>
         </ul>
     </nav>
@@ -300,7 +309,8 @@ Kindly just check comments for better understanding of its parts. This was not m
   src="https://code.jquery.com/jquery-3.4.1.slim.js"
   integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
   crossorigin="anonymous"></script>
-
+<!-- fontawesome -->
+<script src="https://use.fontawesome.com/2363b49f19.js"></script>
 
 {% block javascript %}
     {% include 'adminlte/lib/_scripts.html' %}

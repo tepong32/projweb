@@ -72,30 +72,7 @@ Just viewable by logged-in users.  -->
 
 		<!-- pinax announcements area -->
 		<h3>Announcements</h3>
-
-		    {% announcements as announcement_list %}
-
-		    {% if announcement_list %}
-		        <div class="announcements">
-		            {% for announcement in announcement_list %}
-		                <div class="announcement">
-		                    <strong>{{ announcement.title }}</strong><br />
-		                    {{ announcement.content|truncatechars:150 }}<br />
-		                     <a href="{{ announcement.get_absolute_url }}">Read more...</a>
-		                </div>
-		            {% endfor %}
-		        </div>
-		    {% endif %}
-		    {% if announcement.dismiss_url %}
-		        <form class="form ajax" data-replace-closest=".announcement" action="{{ announcement.dismiss_url }}" method="post">
-		            {% csrf_token %}
-		            <button class="btn btn-default">Clear</button>
-		        </form>
-		    {% endif %}
-
-
-
-
+		 (link to announcement/wb page)
 
 		<!-- feed area -->
 		<div class="container-fluid border" >
