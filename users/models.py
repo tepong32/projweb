@@ -105,7 +105,7 @@ class Profile(models.Model):
 			return self.title
 
 		if self.user_group == "King":
-			self.title = "Site dev. Howrayt! ;)"
+			self.title = "Dev / Admin ;)"
 			return self.title
 
 	# education / school info

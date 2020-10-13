@@ -1,8 +1,7 @@
 theHideOut! website
 
 First-ever Django project. Been working on this for like almost a year (only during my free time) because I'm a newb.
-Intended to be a socmed/forum website. Not really sure as of writing. Continuously making changes on the front-end designs
-and adding models and functionalities. 
+Intended to be a socmed/forum website. (Not really sure as of writing.) I am continuously making changes on the front-end designs and adding models and functionalities...whenever I can.
 
 Disclaimer:
 
