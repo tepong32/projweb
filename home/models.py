@@ -27,4 +27,4 @@ class SubAnnouncement(models.Model):
 		return mark_safe(markdown_text)
 
 
-# maybe Ads?
+# maybe Ads or featured user or item or post-shared?

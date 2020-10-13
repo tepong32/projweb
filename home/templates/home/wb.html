@@ -1,4 +1,5 @@
 {% extends 'home/landing.html' %}
+{% load pinax_announcements_tags %}
 
 <!-- Welcome Back page -->
 <!-- This is the html page rendered when a logged-in user clicks on the site logo link (upper left corner).
@@ -7,7 +8,7 @@ Most likely, this page will just be seen by users who opens a new tab/window on 
 
 {% block main_content %}
 
-<h4 class="text text-center">Welcome back, {{request.user.username}}!</h4>
+<h4 class="text text-center">Hello, {{request.user.username}}!</h4>
 <hr>
 <div class="row">
 	<h4 class="col-8">Announcements:</h4>
@@ -20,16 +21,19 @@ Most likely, this page will just be seen by users who opens a new tab/window on 
 </div>
 <div class="row">
 	<div class="overflow-auto col-8" style="max-height: 250px; padding: 1rem">
-		
-		{% for a in announcements %}
-			<div class="row">
-			    <strong>{{a.title}}</strong>
-			    <p class="text text-sm ml-4">by {{a.author}}</p>
-			</div>
-		    <small>{{a.content|linebreaks}}</small><br>
-		    
-		    <hr>
-		{% endfor %}
+    {% announcements as announcement_list %}
+
+    {% if announcement_list %}
+        <div class="announcements">
+            {% for announcement in announcement_list %}
+                <div class="announcement">
+                    <strong>{{ announcement.title }}</strong><br />
+                    {{ announcement.content }} <br/>
+                    by {{announcement.creator}}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 	</div>
 
 	<div class="overflow-auto col" style="max-height: 250px; padding: 1rem">

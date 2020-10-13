@@ -18,7 +18,7 @@ Just viewable by logged-in users.  -->
               <!-- bg color for profiles depending on user_group -->
               <!-- other user_group color options are tbd -->
               {% if user.profile.user_group == "King" %}
-              	<div class="widget-user-header bg-red">
+              	<div class="widget-user-header bg-purple">
               {% elif user.profile.user_group == "Pawn" %}
               	<div class="widget-user-header bg-primary">
 
@@ -54,11 +54,11 @@ Just viewable by logged-in users.  -->
 				      <!-- create post link -->
 				      <div class="col">
 				      	<div class="row">
-				      	  <a class='btn btn-primary btn-outline-light mt-3 mb-2 text-sm' href="{% url 'post-new' %}">
-				      	  	+<li class="fa fa-comments"></li> 
+				      	  <a class='btn btn-dark btn-outline-light mt-3 mb-2' href="{% url 'post-new' %}">
+				      	  	+<li class="fa fa-comments" style="color: cyan"></li> 
 				      	  </a>
-				      	  <a class='btn btn-primary btn-outline-light mt-3 mb-2 text-sm' href="{% url 'todo-new' %}">
-				      	  	+<li class="nav-icon fa fa-exclamation" style="color: red"></li>
+				      	  <a class='btn btn-dark btn-outline-light mt-3 mb-2 ml-2' href="{% url 'todo-new' %}">
+				      	  	+<li class="nav-icon fa fa-exclamation" style="color: pink"></li>
 				      	  </a>
 					    </div>
 				      </div>

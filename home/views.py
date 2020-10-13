@@ -35,7 +35,9 @@ def home(request):
 	# template_folder/html_file
 	return render(request, 'home/home.html', context)
 
+
 def announcement(request):
+	# not being used atm
 	context = {
 
 	}
