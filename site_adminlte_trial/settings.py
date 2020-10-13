@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'crispy_forms',             # for better form-display formatting
     'markdown_deux',
     'pinax.announcements',      # announcements library # still checking out how to use this
-    'pinax.templates',
+    # 'pinax.templates',
     'bootstrapform',
     
 
