@@ -36,6 +36,15 @@ def home(request):
 	return render(request, 'home/home.html', context)
 
 
+
+
+
+
+
+
+
+
+
 def announcement(request):
 	# not being used atm
 	context = {
@@ -43,11 +52,6 @@ def announcement(request):
 	}
 
 	return render(request, 'home/test.html', context)
-
-
-
-
-
 
 
 # as the name suggests, this page is just for testing how html+logic works...if they do.
