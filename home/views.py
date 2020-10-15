@@ -13,7 +13,7 @@ def landing(request):
 	# "<domain_name>/home" will be the homepage linked with the "home" icon; not this one.
 	user = User
 	context = {
-		'announcements': SubAnnouncement.objects.all(),
+		'subannouncements': SubAnnouncement.objects.all(),
 		'users': user.objects.order_by('-date_joined'), # try 'date_registered' to see all options
 		# 'ads': 
 	}
@@ -22,6 +22,11 @@ def landing(request):
 	else:
 		return render(request, 'home/landing.html', context)
 
+
+
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def home(request):
 	user = User
 	user_list = User.objects.all()

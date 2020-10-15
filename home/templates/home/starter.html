@@ -130,7 +130,7 @@ Kindly just check comments for better understanding of its parts. This was not m
               {% if request.user.profile.user_group == "King" %}
                 <div class="widget-user-header bg-purple">
               {% elif request.user.profile.user_group == "Pawn" %}
-                <div class="widget-user-header bg-primary">
+                <div class="widget-user-header bg-dark">
               {% endif %}
 
                 <!-- icon displayed based on user_group -->
@@ -190,7 +190,7 @@ Kindly just check comments for better understanding of its parts. This was not m
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="{% url 'profile' request.user.username %}" >
+                      <a class="nav-link" href="/blog" >
                         <i class="fa fa-feed"></i>
                       </a>
                     </li>

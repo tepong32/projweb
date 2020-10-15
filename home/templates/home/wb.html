@@ -13,9 +13,9 @@ Most likely, this page will just be seen by users who opens a new tab/window on 
 <div class="row">
 	<h4 class="col-8">Announcements:</h4>
 	<div>
-		<h6>Check out our newest users!</h6>
+		<h6>Check out our newest members!</h6>
 		<small>
-			<i class="text text-sm" style="font-weight: 10; color: red">(We now have: {{ users.objects.count }} users! (how to show count? LOL)</i><br>
+			<i class="text text-sm" style="font-weight: 10; color: red">(We now have: {{ user.count }} users! (how to show count? LOL)</i><br>
 		</small>
 	</div>
 </div>
@@ -31,13 +31,13 @@ Most likely, this page will just be seen by users who opens a new tab/window on 
                     {{ announcement.content }} <br/>
                     by {{announcement.creator}} <br/>
                     {{announcement.publish_start}} | {{announcement.publish_end}}<br/>
-                    <a href="{{ announcement.get_absolute_url }}">Read more...</a>
+<!--                     <a href="{{ announcement.get_absolute_url }}">Read more...</a>
                     {% if announcement.dismiss_url %}
 				        <form class="form ajax" data-replace-closest=".announcement" action="{{ announcement.dismiss_url }}" method="post">
 				            {% csrf_token %}
 				            <button class="btn btn-default">Clear</button>
 				        </form>
-				    {% endif %}
+				    {% endif %} -->
                 </div>
             {% endfor %}
         </div>

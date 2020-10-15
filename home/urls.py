@@ -7,10 +7,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url
 
+
+from blog.views import BlogIndexView
+
 urlpatterns = [
 	# func-based view
     path('', views.landing, name='landing' ),
     path('home/', views.home, name='home' ),
+    path('blog/', include('blog.urls') ),
 
     # get this done with pinax.announcements & pinax.templates
     # class-based detail view needed? check blog templates
