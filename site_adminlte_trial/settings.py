@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
 from django.conf import settings # tried for email-sending pw-reset attempts
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -22,10 +21,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '!4w%dze725mc^)w$b+*417fk+masts6659=lco-2jc*jm4va^$!5(ju'
+SECRET_KEY = os.environ.get('PROJWEB_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG_VALUE')
 
 ALLOWED_HOSTS = ['thehideout.pythonanywhere.com', 'localhost']
 
