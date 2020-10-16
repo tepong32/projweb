@@ -167,18 +167,19 @@ Kindly just check comments for better understanding of its parts. This was not m
               <div class="media col">
                 <img class="rounded-circle account-img elevation-5" src="{{ request.user.profile.image.url }}" style="height: 60px; width: 60px;">
                 <div class="media-body">
-                  <div class="row">
+                  <div class="row"> <!-- username-row -->
                     <h4 class="account-heading ml-3"><strong> <a href="/home"> {{ request.user.username }} </a></strong></h4> <i class="fa fa-home"></i>
-                  </div>
-                  <div style="background-color: transparent; padding: 0.2rem">
-                    <a class='btn btn-dark btn-outline-light ml-2' href="{% url 'post-new' %}">
-                      +<li class="fa fa-comments" style="color: cyan"></li> 
-                    </a>
-                    <a class='btn btn-dark btn-outline-light ml-2' href="{% url 'todo-new' %}">
-                      +<li class="nav-icon fa fa-exclamation" style="color: cyan"></li>
-                    </a>
-                  </div>
-                </div> <!-- create post div -->
+
+                    <div style="background-color: transparent; padding: 0.2rem">
+                      <a class='btn btn-dark btn-outline-light ml-4' href="{% url 'post-new' %}">
+                        +<li class="fa fa-comments" style="color: cyan"></li> 
+                      </a>
+                      <a class='btn btn-dark btn-outline-light ml-2' href="{% url 'todo-new' %}">
+                        +<li class="nav-icon fa fa-exclamation" style="color: cyan"></li>
+                      </a>
+                    </div> <!-- create post div -->
+                  </div> <!-- /username-row -->
+                </div> <!-- /media-body -->
               
               <!-- NAVIGATION LINKS -->
               <div class="col">
@@ -191,7 +192,7 @@ Kindly just check comments for better understanding of its parts. This was not m
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="/blog" >
-                        <i class="fa fa-feed"></i>
+                        <i class="fa fa-newspaper"></i>
                       </a>
                     </li>
                     <!-- Messages Dropdown Menu -->
