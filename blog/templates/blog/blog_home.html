@@ -80,13 +80,13 @@
             <!-- create a whitespace here for the update&delete buttons to be moved to the right -->
             <div class="ml-5">
               <a
-                class="fa fa-pencil-alt text-sm ml-2 mr-2"
+                class="fa fa-edit text-sm ml-2 mr-2" style="color: green"
                 href="{% url 'post-update' post.id %}"
               >
               </a>
               <a
                 class="fa fa-trash text-sm ml-2 mr-2"
-                href="{% url 'post-delete' post.id %}"
+                href="{% url 'post-delete' post.id %}" style="color: red"
               >
               </a>
               <a

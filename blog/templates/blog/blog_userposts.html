@@ -9,23 +9,22 @@
     style="background-color: rgba(1, 0, 0, 0.05)"
   >
     <div class="container">
-      <h1 class="mb-3 mt-3">
-        Posts by user: <strong>{{ view.kwargs.username }}</strong> ({{
-        page_obj.paginator.count }})
-      </h1>
+      <h4 class="mb-3 mt-3">
+        Posts by user: <strong>{{ view.kwargs.username }}</strong> ({{ page_obj.paginator.count }})
+      </h4>
 
       <!-- Pagination part -->
       {% if is_paginated %}
       <a class="btn btn-sm btn-outline-info mb-4" href="?page=1"> First </a>
-      {% for num in page_obj.paginator.page_range %} {% if page_obj.number ==
-      num %}
-      <a class="btn btn-sm btn-info mb-4" href="?page={{ num }}"> {{ num }} </a>
-      {% elif num > page_obj.number|add:'-15' and num < page_obj.number|add:'15'
-      %}
-      <a class="btn btn-sm btn-outline-info mb-4" href="?page={{ num }}">
+      {% for num in page_obj.paginator.page_range %}
+      {% if page_obj.number == num %}
+        <a class="btn btn-sm btn-info mb-4" href="?page={{ num }}"> {{ num }} </a>
+      {% elif num > page_obj.number|add:'-15' and num < page_obj.number|add:'15' %}
+        <a class="btn btn-sm btn-outline-info mb-4" href="?page={{ num }}">
         {{ num }}
-      </a>
-      {% endif %} {% endfor %}
+        </a>
+      {% endif %}
+      {% endfor %}
       <a
         class="btn btn-sm btn-outline-info mb-4"
         href="?page={{ page_obj.paginator.num_pages }}"
@@ -58,11 +57,11 @@
 
       {% for post in posts %}
       <hr />
-      <article class="media content-section">
+      <article class="media content-section" style="font-size: 13px">
         <img
           class="rounded-circle article-img"
           src="{{ post.author.profile.image.url }}"
-          style="height: 350px; max-width: 200px; min-width: 100px"
+          style="height: 120px; min-width: 120px"
         />
         <div class="media-body">
           <div class="article-metadata">
@@ -79,23 +78,23 @@
               class="btn btn-outline-success btn-sm mr-1"
               href="{% url 'post-update' post.id %}"
             >
-              Update
+              <i class="fa fa-edit"></i>
             </a>
             <a
               class="btn btn-outline-danger btn-sm mr-1"
               href="{% url 'post-delete' post.id %}"
             >
-              Delete
+              <i class="fa fa-trash" style="color: red"></i>
             </a>
             {% endif %}
           </div>
-          <h2>
+          <h5>
             <a
               class="article-title ml-3"
               href=" {% url 'post-detail' post.id %}"
               >{{ post.title }}</a
             >
-          </h2>
+          </h5>
           <!-- post.id was needed for individual posts to be displayed -->
           <p class="article-content">
             {{ post.get_markdown|truncatechars:500 }}
@@ -104,16 +103,15 @@
       </article>
       <hr />
       {% endfor %} {% if is_paginated %}
-      <a class="btn btn-sm btn-outline-info mb-4" href="?page=1"> First </a>
-      {% for num in page_obj.paginator.page_range %} {% if page_obj.number ==
-      num %}
-      <a class="btn btn-sm btn-info mb-4" href="?page={{ num }}"> {{ num }} </a>
-      {% elif num > page_obj.number|add:'-15' and num < page_obj.number|add:'15'
-      %}
-      <a class="btn btn-sm btn-outline-info mb-4" href="?page={{ num }}">
+        <a class="btn btn-sm btn-outline-info mb-4" href="?page=1"> First </a>
+      {% for num in page_obj.paginator.page_range %} {% if page_obj.number == num %}
+        <a class="btn btn-sm btn-info mb-4" href="?page={{ num }}"> {{ num }} </a>
+      {% elif num > page_obj.number|add:'-15' and num < page_obj.number|add:'15' %}
+        <a class="btn btn-sm btn-outline-info mb-4" href="?page={{ num }}">
         {{ num }}
-      </a>
-      {% endif %} {% endfor %}
+        </a>
+      {% endif %}
+      {% endfor %}
       <a
         class="btn btn-sm btn-outline-info mb-4"
         href="?page={{ page_obj.paginator.num_pages }}"
