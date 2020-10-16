@@ -169,14 +169,25 @@ Kindly just check comments for better understanding of its parts. This was not m
                 <div class="media-body">
                   <div class="row"> <!-- username-row -->
                     <h4 class="account-heading ml-3"><strong> <a href="/home"> {{ request.user.username }} </a></strong></h4> <i class="fa fa-home"></i>
+                    <!-- blogpost modal -->
+                    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content"></div>
+                      </div>
+                    </div>
+                    <button id="blogpost-create-modal" class="btn btn-dark btn-outline-light ml-3 fa fa-comment" type="button" name="button" style=" color: cyan; width: 12%; padding: 0.2rem">
+                      +
+                    </button>
 
-                    <div style="background-color: transparent; padding: 0.2rem">
-                      <a class='btn btn-dark btn-outline-light ml-4' href="{% url 'post-new' %}">
-                        +<li class="fa fa-comments" style="color: cyan"></li> 
-                      </a>
-                      <a class='btn btn-dark btn-outline-light ml-2' href="{% url 'todo-new' %}">
-                        +<li class="nav-icon fa fa-exclamation" style="color: cyan"></li>
-                      </a>
+                    <!-- todo modal -->
+                    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content"></div>
+                      </div>
+                    </div>
+                    <button id="todo-create-modal" class="btn btn-dark btn-outline-light ml-3 fa fa-exclamation" type="button" name="button" style=" color: cyan; width: 12%; padding: 0.2rem">
+                      +
+                    </button>
                     </div> <!-- create post div -->
                   </div> <!-- /username-row -->
                 </div> <!-- /media-body -->
@@ -409,8 +420,11 @@ Kindly just check comments for better understanding of its parts. This was not m
         });
 
         // for modals/popup create post window
-        $("#quickpost").modalForm({
-            formURL: "{% url 'quickpost' %}"});
+        $("#blogpost-create-modal").modalForm({
+            formURL: "{% url 'post-new' %}"});
+
+        $("#todo-create-modal").modalForm({
+            formURL: "{% url 'todo-new' %}"});
 
         // datepicker testing
         $('#datetimepicker').data("DateTimePicker").FUNCTION()
