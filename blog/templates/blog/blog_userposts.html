@@ -97,7 +97,7 @@
           </h5>
           <!-- post.id was needed for individual posts to be displayed -->
           <p class="article-content">
-            {{ post.get_markdown|truncatechars:500 }}
+            {{ post.get_markdown|truncatechars:500|linebreaks }}
           </p>
         </div>
       </article>

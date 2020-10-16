@@ -1,6 +1,11 @@
 <!-- extends 'blog/blog_base.html' -->
 {% load crispy_forms_tags %}
 
+
+{% block pagedown_head %}
+  {{ form.media }}
+{% endblock pagedown_head %}
+
 {% block blog_content %}
 <div class="row">
   <div class="col-1"></div>

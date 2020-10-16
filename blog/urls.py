@@ -12,9 +12,6 @@ from .views import (
     PostCreateView,
     PostUpdateView,
     PostDeleteView,
-
-    PostCreatePopup,
-    quick_post_view,
     BlogIndexView,
 
     )
@@ -31,14 +28,6 @@ urlpatterns = [
     # filters applied to posts
     path('post/<str:username>/', UserPostListView.as_view(), name='user-posts'),
     
-
-
-    # experiment page to see the changes being made
-    # change parameters as necessary, depending on what part of the site you are modifying
-    path('post/quick', views.quick_post_view, name='quickpost'),
-    #path('post/popup/', PostCreatePopup.as_view(), name='post-popup')
-
-    #path('exp/', PDCreateView.as_view(), name='exp'),
     ]
 
 

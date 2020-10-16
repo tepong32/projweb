@@ -129,37 +129,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		return False		
 
 
-# for testing out a popup post-create form
-from bootstrap_modal_forms.generic import BSModalCreateView
-from django.urls import reverse_lazy
-from .forms import ModalPostForm
-
-class PostCreatePopup(LoginRequiredMixin, BSModalCreateView):
-	model = BlogPost
-	form_class = ModalPostForm
-	template_name = 'blog/blog_postform_modal.html'
-	success_message = 'Posted'
-	success_url = "/home/"	#reverse_lazy('blog-home')
-
-
-
-# this will work if this will be put on its own page/html file
-def quick_post_view(request):
-	form = ModalPostForm(request.POST or None)
-	if form.is_valid():
-		form.save()
-		form = ModalPostForm()
-
-	context = {
-		'form': form
-		}
-	return render(request, 'blog/quickpost.html', context)
-
-
-
-
-
-
 
 #####################################################
 # find a way to render another website (youtube) inside this specific view // embed website
