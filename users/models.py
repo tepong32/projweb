@@ -132,10 +132,10 @@ class Profile(models.Model):
 	quote = models.CharField(max_length=300)
 	about_me = models.TextField(blank=True, default="Well...who cares!? :( JK This is default. Change this! :)")
 	reach_me_intro = models.TextField(default="You can reach me thru: (email or socmed accounts)")
-	screen_name = models.CharField(max_length=50, blank=True,) # helper_text="Get an alias for anonimity ;)"
+	screen_name = models.CharField(max_length=50, blank=True, unique=True) # helper_text="Get an alias for anonimity ;)"
 
 	def __str__(self):
-		return f"{self.user.username}'s Profile"
+		return f"{self.user.username}"
 
 	def get_absolute_url(self):
 		return reverse('profile', kwargs={'pk': self.pk})
