@@ -11,9 +11,18 @@ Just viewable by logged-in users.  -->
 
 <div class="row">
     <!-- Chat area -->
-    <div class="col col-8">
-      Chat window? <br>
-      Messages area?
+    <div class="col col-8" style="padding: 10px">
+      This part will either be a Chat window, a Messages area, or a combination of both; just with tabs same with that of the profile page. <br><br>
+
+      Will be studying how to create a messaging system first. Might be pausing working on this project for now since the tutorial I found for implementing a messaging and notifications system is quite a long one...but, I guess, not longer than what I spent putting all these things together especially modifying how the site looks. (Deym! The backend seemed easier...WAY EASIER! :D)<br><br>
+
+      ATM, almost all features of this site aside from messaging and notifications is functional. Might have just overlooked some pages and re-directs (believe me, I tried to manually check all pages) but functionality-wise, this is a working product. <br><br>
+
+      Will also adding a dark-mode toggle, as well some fancy, nerd-looking features for the site (I already have quite a few on my list). Of course, those will take a while. Err...I'd say a long while. :D Well, that's what updates and patches are for, anyways. Right?? <br><br>
+
+      Looking forward to seeing testers share their ideas of what can be added and/or modified.
+
+
     </div>
 
     <!-- CARDS area -->
@@ -56,71 +65,75 @@ Just viewable by logged-in users.  -->
             </div>
 
         </div>
-          <div class="card-footer" style="font-size: 12px; background-color: rgba(0,0,1,.15);">
-              no footer atm, can be removed
-          </div>
+
         </div>
         <!-- where are the open div tags for these three? -->
         </div>
         </div>
+                  <div class="card-footer" style="font-size: 12px; background-color: rgba(0,0,1,.15);">
+              no footer atm, can be removed
+          </div>
         </div> <!-- /To-Dos -->
 
-      <p>
-        <h4>Newest Posts</h4>
-        <i class="ml-auto">filter here </i>
-      </p>
-      {% for post in blogposts %}
-  <div class="border border-success mt-1 mb-1">
-    <article class="media media-sm content-section ml-2 mt-2 mb-3">
-      <img class='rounded-circle article-img' src='{{ post.author.profile.image.url }}' style="height: 30px; width: 30px">
 
-      <div class="media-body">
-        <div class="article-metadata">
-        <div class="row">
-          <a class="article-title col-8 ml-3" href=" {% url 'post-detail' post.id %}">
-            {{ post.title|truncatechars:50 }}
-          </a>
-          <div class=" col ml-2">
-            <i style="font-size: 12px">
-              {{ post.date_posted|date:"F d" }}
-            </i>
+      <!-- feed area -->
+      <h4>Newest Posts</h4>
+      <i class="ml-auto">filter here </i>
+      <div class="container-fluid overflow-auto" style="max-height: 450px">
+        
+        {% for post in blogposts %}
+        <div class="border border-success mt-1 mb-1">
+          
+          <article class="media media-sm content-section ml-2 mt-2">
+            <div class="col col-2">
+              <a href="{% url 'profile' post.author %}">
+                <img class='rounded-circle article-img' src='{{ post.author.profile.image.url }}' style="height: 35px; width: 35px">
+                <i class="ml-3"style="font-size: 9px;font-family: 'Monotype Corsiva'; color: black">
+                  {{ post.author }}</i>
+              </a>
+            </div>
+            <div class="media-body ml-2">
+              <div class="article-metadata">
+              <div class="row">
+                <a class="article-title col-8 ml-3" href=" {% url 'post-detail' post.id %}">
+                  {{ post.title|truncatechars:20 }}
+                </a>
+                <div class=" col ml-2">
+                  <i style="font-size: 10px">
+                    <small>{{ post.date_posted|date:"F d" }}</small>
+                  </i>
+                </div>
+              </div>
+
+                <i class="ml-3" style="font-size: 12px">
+                {% if post.author == user %}
+                    <a class='fa fa-edit text-sm ml-2 mr-1' href="{% url 'post-update' post.id %}" style="color: green"></a>
+                    <small class="text-muted ml-2"><i class="fa fa-tag">: {{post.tag}}</i></small>
+                {% else %}
+                    <small class="text-muted ml-2"><i class="fa fa-tag">: {{post.tag}}</i></small>
+                {% endif %}
+                </i>
+              </div>
+              </div>
           </div>
-        </div>
+          </article>
 
-          <a class="ml-3" href="{% url 'profile' post.author %}" style="font-size: 9px;font-family: 'Monotype Corsiva'; color: green">
-            <i><u>{{ post.author }}</u></i>
-          </a>
-          {% if post.author == user %}
-            <!-- create a whitespace here for the update&delete buttons to be moved to the right -->
-            <i class="ml-3" style="font-size: 12px">
-              <a class='fa fa-edit text-sm ml-2 mr-1' href="{% url 'post-update' post.id %}" style="color: green"></a>
-              <small class="text-muted ml-2"><i class="fa fa-tag">: {{post.tag}}</i></small>
-            </i>
-          {% else %}
-          <small class="ml-3">
-            <small class="text-muted ml-2"><i class="fa fa-tag">: {{post.tag}}</i></small>
-          </small>
-          {% endif %}
-        </div>
-        </div>
+        {% endfor %}
+
+        {% if is_paginated %}
+          <a class='btn  btn-sm btn-outline-info mb-4' href="?page=1"> First </a>
+          {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+              <a class='btn btn-sm btn-info mb-4' href="?page={{ num }}"> {{ num }} </a>
+            {%  elif num > page_obj.number|add:'-5' and num < page_obj.number|add:'5' %}
+              <a class='btn btn-sm btn-outline-info mb-4' href="?page={{ num }}"> {{ num }} </a>
+            {% endif %}
+          {% endfor %}
+          <a class='btn btn-sm btn-outline-info mb-4' href="?page={{ page_obj.paginator.num_pages }}"> Last </a>    
+        {% endif %}
+      </div>   <!-- / feed area -->
     </div>
-    </article>
-
-  {% endfor %}
-
-  {% if is_paginated %}
-    <a class='btn  btn-sm btn-outline-info mb-4' href="?page=1"> First </a>
-    {% for num in page_obj.paginator.page_range %}
-      {% if page_obj.number == num %}
-        <a class='btn btn-sm btn-info mb-4' href="?page={{ num }}"> {{ num }} </a>
-      {%  elif num > page_obj.number|add:'-5' and num < page_obj.number|add:'5' %}
-        <a class='btn btn-sm btn-outline-info mb-4' href="?page={{ num }}"> {{ num }} </a>
-      {% endif %}
-    {% endfor %}
-    <a class='btn btn-sm btn-outline-info mb-4' href="?page={{ page_obj.paginator.num_pages }}"> Last </a>    
-  {% endif %}
-    </div>
-    <!-- / feed area -->
+   
 
 
 
