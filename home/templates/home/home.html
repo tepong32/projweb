@@ -43,7 +43,7 @@ Just viewable by logged-in users.  -->
                 <div clas="row">
                   <i class="text text-sm text-muted" href="#"><b>{{ todo.category }}</b></i>
                   </i>
-                    <a class='fa fa-edit text-sm ml-3 mr-1' href="{% url 'todo-update' todo.id %}"></a>
+                    <a class='fa fa-edit text-sm ml-3 mr-1' href="{% url 'todo-update' todo.id %}" style="color: green"></a>
                     <a class='fa fa-trash text-sm ml-1 mr-1' href="{% url 'todo-delete' todo.id %}" style="color: red"></a>
                     <i class="text-sm"><small class="text pull-right ml-5"> Due: <text class="text-danger">{{ todo.finish_by|date:"F d" }}</text></small></i>
               </div>
@@ -93,7 +93,7 @@ Just viewable by logged-in users.  -->
           {% if post.author == user %}
             <!-- create a whitespace here for the update&delete buttons to be moved to the right -->
             <i class="ml-3" style="font-size: 12px">
-              <a class='fa fa-edit text-sm ml-2 mr-1' href="{% url 'post-update' post.id %}"></a>
+              <a class='fa fa-edit text-sm ml-2 mr-1' href="{% url 'post-update' post.id %}" style="color: green"></a>
               <small class="text-muted ml-2"><i class="fa fa-tag">: {{post.tag}}</i></small>
             </i>
           {% else %}
