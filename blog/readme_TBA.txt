@@ -6,4 +6,10 @@ text sizes must be generalized
 if-else statements to provide colors (border or bg-color) to be implemented for author.profile.user_group == "<user_group>"
 maybe a flex display and filtered posts depending on post.tag in the blog_home page
 redirects and "go back" buttons modifications
-quickpost link not working
+
+
+should this be a stand-alone app or will need to be copied to another project,
+app needs to have a base template for extending html files
+
+currently, all html extends 'home/landing.html' which will be a problem if
+we are to change the base html file to extend from
