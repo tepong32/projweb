@@ -33,6 +33,7 @@ Kindly just check comments for better understanding of its parts. This was not m
 </head>
 
 <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">
+
     
         
 
@@ -86,8 +87,8 @@ Kindly just check comments for better understanding of its parts. This was not m
                     </a>
                     <ul class="nav nav-treeview menu-open">
                             <li class="nav-item">
-                                    <a href="{% url 'testing' %}" class="nav-link">
-                                        <i class="nav-icon fas fa-exclamation-triangle"></i> Testing Page
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-exclamation-triangle"></i> Blank Page
                                     </a>
                                 </li>
                         <li class="nav-item">
@@ -168,7 +169,7 @@ Kindly just check comments for better understanding of its parts. This was not m
                 <img class="rounded-circle account-img elevation-5" src="{{ request.user.profile.image.url }}" style="height: 60px; width: 60px;">
                 <div class="media-body">
                   <div class="row"> <!-- username-row -->
-                    <h4 class="account-heading ml-3"><strong> <a href="/home"> {{ request.user.username }} </a></strong></h4> <i class="fa fa-home"></i>
+                    <a href="/home"> <h4 class="account-heading ml-3 fa fa-home"><strong> {{ request.user.username }} </a></strong></h4>
                     <!-- blogpost modal -->
                     <div class="modal fade" tabindex="-1" role="dialog" id="modal">
                       <div class="modal-dialog" role="document">
@@ -191,6 +192,8 @@ Kindly just check comments for better understanding of its parts. This was not m
                     </div> <!-- create post div -->
                   </div> <!-- /username-row -->
                 </div> <!-- /media-body -->
+
+
               
               <!-- NAVIGATION LINKS -->
               <div class="col">
@@ -380,12 +383,19 @@ Kindly just check comments for better understanding of its parts. This was not m
 
 <!-- jquery script for the marked and markdown part of css -->
 <!-- place above bootstrap // not sure if there's any reason why -->
+
+<!-- darkmode.js -->
+<!-- currently only working on homepage -->
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script> 
+{% include 'home/home_js.html' %}
+<!-- /darkmode.js -->
+
 <script
   src="https://code.jquery.com/jquery-3.4.1.slim.js"
   integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
   crossorigin="anonymous"></script>
-<!-- fontawesome -->
-<script src="https://use.fontawesome.com/2363b49f19.js"></script>
+
+<script src="https://use.fontawesome.com/2363b49f19.js"></script><!-- fontawesome -->
 
 {% block javascript %}
     {% include 'adminlte/lib/_scripts.html' %}

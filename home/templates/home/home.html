@@ -7,11 +7,12 @@
 Just viewable by logged-in users.  -->
 
 {% block main_content %}
+{% include 'home/home_css.html' %}
 
 
 <div class="row">
     <!-- Chat area -->
-    <div class="col col-8" style="padding: 10px">
+    <div class="chat-area col col-8" style="padding: 10px">
       This part will either be a Chat window, a Messages area, or a combination of both; just with tabs same with that of the profile page. <br><br>
 
       Will be studying how to create a messaging system first. Might be pausing working on this project for now since the tutorial I found for implementing a messaging and notifications system is quite a long one...but, I guess, not longer than what I spent putting all these things together especially modifying how the site looks. (Deym! The backend seemed easier...WAY EASIER! :D)<br><br>
@@ -29,7 +30,7 @@ Just viewable by logged-in users.  -->
     <div class="container-fluid col">
       <!-- To-Dos -->
       <div class="container-fluid " style="height: 900px">
-        <div class="card card-warning">
+        <div class="card card-orange">
           <div class="card-header" style="max-height: 40px">
             <i class="card-title text text-sm">Reminders:</i>
 
@@ -39,16 +40,12 @@ Just viewable by logged-in users.  -->
             </div>
             <!-- /.card-tools -->
           </div>
-        <div class="card-body" style="padding: 0">
-            <div class="card card-widget widget-user">
-            <div class="content-section">
-            <div class="media">
-              <div class="media-body text-justify overflow-auto" style="padding: .5rem; max-height: 250px">
-                <i style="font-size: 12px">
+        <div class="reminder-body" >
+            <div>
+                <i>
                 Got something to do later? Create a reminder and see it here everytime you check back in!
                 </i>
                 {% for todo in todos %}
-                  <hr>
                 <div clas="row">
                   <i class="text text-sm text-muted" href="#"><b>{{ todo.category }}</b></i>
                   </i>
@@ -63,12 +60,7 @@ Just viewable by logged-in users.  -->
                 <hr>
               {% endfor %}
             </div>
-
-        </div>
-
-        </div>
         <!-- where are the open div tags for these three? -->
-        </div>
         </div>
                   <div class="card-footer" style="font-size: 12px; background-color: rgba(0,0,1,.15);">
               no footer atm, can be removed
@@ -164,6 +156,7 @@ Just viewable by logged-in users.  -->
     </div>
   {% endfor %}
 
+
   <!-- /2nd row right -->
   </div>
 <!-- /outmost div right column -->
@@ -172,6 +165,7 @@ Just viewable by logged-in users.  -->
 
 </div>
 </div>
+
 
 
 
