@@ -43,13 +43,6 @@ def home(request):
 
 
 
-
-
-
-
-
-
-
 def announcement(request):
 	# not being used atm
 	context = {
@@ -59,13 +52,3 @@ def announcement(request):
 	return render(request, 'home/test.html', context)
 
 
-# as the name suggests, this page is just for testing how html+logic works...if they do.
-def testing(request, username=None):
-	user_list = User.objects.all()
-	context = {
-		'announcements': SubAnnouncement.objects.all(), # not being used // no instance created for this
-		'todos': ToDoList.objects.filter(author=request.user).order_by("finish_by"),
-		'blogposts': BlogPost.objects.all().order_by("-date_posted"),
-		'users': user_list
-	}
-	return render(request, 'home/test.html')
