@@ -34,12 +34,11 @@ Kindly just check comments for better understanding of its parts. This was not m
 
 <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">
 
-    
-        
+{% include 'home/home_css.html' %} <!-- containing the darkmode toggle. This 'include' tag is supposed to be the only instance throughout the project but I decided to place the toggle on each of the project's apps so, copying them to another project will be easier -->
 
-<!-- header options whether user is logged-in or not -->
-<!-- LOGGED-IN SIDEBAR -->
+
 {% if user.is_authenticated %}
+<!-- LOGGED-IN SIDEBAR -->
 <div class="wrapper">
 <aside class="main-sidebar sidebar-dark-secondary elevation-4">
     <!-- Brand Logo -->
@@ -53,22 +52,16 @@ Kindly just check comments for better understanding of its parts. This was not m
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-<!--                 <li class="nav-item">
-                    <a href="{% url 'home' %}" class="nav-link">
-                        <i class="nav-icon fa fa-home"></i> 
-                        <p>Home</p>
-                    </a>
-                </li> -->
                 {% if request.user.profile.user_group == "King" %}
                 <li class="nav-item">
                     <a href="/admin" class="nav-link">
                     <i class="nav-icon fa fa-smile"></i>
                     <p>Admin</p>
-                </a>
+                    </a>
                 </li>
                 {% endif %}
                 <li class="nav-item">
-                        <a href="{% url 'todo-home' %}" class="nav-link">
+                        <a href="/" class="nav-link">
                             <i class="nav-icon fa fa-bullhorn"></i> 
                             <p>Announcements</p>
                         </a>
@@ -119,7 +112,6 @@ Kindly just check comments for better understanding of its parts. This was not m
 
 <!-- LOGGED-IN HEADER -->
 <div class="container-fluid">
-
     <div class="col">
       <!-- post panel area -->
             <div class="card card-primary">
